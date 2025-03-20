@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "575087785485",
+    "project_id": "tracle-dev",
+    "storage_bucket": "tracle-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575087785485:android:e4deb4e026998244748744",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvn-bn2P9IomUyLEt_aeoKpheenp6yS7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575087785485:android:d41f29ea2a206ded748744",
+        "android_client_info": {
+          "package_name": "com.tracle.drivers.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvn-bn2P9IomUyLEt_aeoKpheenp6yS7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575087785485:android:bd18b81625fc66e2748744",
+        "android_client_info": {
+          "package_name": "tech.airouting.tracle.drivers.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvn-bn2P9IomUyLEt_aeoKpheenp6yS7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
