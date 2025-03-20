@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-12 18:10:09
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-20 15:49:01
+ * @LastEditTime: 2025-03-20 15:55:14
  * @Description: 
  */
 import 'package:firebase_core/firebase_core.dart';
@@ -52,9 +52,14 @@ class _TracleDriverAppState extends State<TracleDriverApp> {
 
       // 從遠端獲取並激活配置
       await _remoteConfig.fetchAndActivate();
+
+      String apiManagementServiceV3 =
+          _remoteConfig.getString('API_MANAGEMENT_SERVICE_V3');
+      String apiUserServiceV3 = _remoteConfig.getString('API_USER_SERVICE_V3');
+      print('API_MANAGEMENT_SERVICE_V3: $apiManagementServiceV3');
+      print('API_USER_SERVICE_V3: $apiUserServiceV3');
     } catch (e) {
-      // 處理異常
-      print('遠端配置初始化失敗: $e');
+      // TODO: 應該要有記錄 logo 的地方
     }
   }
 
