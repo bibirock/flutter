@@ -2,11 +2,12 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:25:33
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-20 16:32:32
+ * @LastEditTime: 2025-03-20 17:27:54
  * @Description: 
  */
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'api_service.dart';
 
 class ApiServiceManager {
@@ -21,6 +22,7 @@ class ApiServiceManager {
   static const String _defaultUserUrl = 'https://sso-api.tracle.site';
 
   static Future<void> init() async {
+    await Firebase.initializeApp();
     try {
       await _remoteConfig.setDefaults({
         'API_MANAGEMENT_SERVICE_V3': _defaultManagementUrl,

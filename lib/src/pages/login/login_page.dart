@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../services/sso_api.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -21,6 +22,50 @@ class _LoginFormState extends State<LoginForm> {
     _accountController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  // 呼叫 API 的登入方法
+  Future<void> _login() async {
+    final ssoApi = SSOApi();
+    try {
+      final result = await ssoApi.signInPassword(_account, _password);
+      // 成功時顯示登入成功的對話框
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('登入成功'),
+            content: Text(
+              '帳號: ${result.accountId}\n'
+              'Token: ${result.accessToken}',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('確定'),
+              ),
+            ],
+          );
+        },
+      );
+    } catch (error) {
+      // 失敗時顯示錯誤訊息
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('登入失敗'),
+            content: Text('錯誤: $error'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('確定'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -114,23 +159,7 @@ class _LoginFormState extends State<LoginForm> {
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text('登入資訊'),
-                                content: Text('帳號: $_account\n密碼: $_password'),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('確定'),
-                                  )
-                                ],
-                              );
-                            },
-                          );
+                          _login();
                         },
                         child: const Padding(
                           padding: EdgeInsets.symmetric(
