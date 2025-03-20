@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:05:15
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-20 16:27:07
+ * @LastEditTime: 2025-03-20 17:39:08
  * @Description: 
  */
 
@@ -61,5 +61,9 @@ class ApiService {
 
   void updateBaseUrl(String newUrl) {
     dio.options.baseUrl = newUrl;
+  }
+
+  void updateRequestHeader(String key, String value) {
+    dio.options.headers[key] = value;
   }
 }

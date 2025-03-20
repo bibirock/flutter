@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../services/sso_api.dart';
+import '/services/sso_api.dart';
+import '/services/settings/api_service.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -29,6 +30,7 @@ class _LoginFormState extends State<LoginForm> {
     final ssoApi = SSOApi();
     try {
       final result = await ssoApi.signInPassword(_account, _password);
+
       // 成功時顯示登入成功的對話框
       showDialog(
         context: context,
