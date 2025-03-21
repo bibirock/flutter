@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-12 18:10:09
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-21 13:35:48
+ * @LastEditTime: 2025-03-21 14:01:32
  * @Description: 
  */
 
@@ -46,10 +46,31 @@ class _TracleDriverAppState extends ConsumerState<TracleDriverApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF9AC972)),
-      home: Scaffold(
-        body: Center(
-          child: isAuthenticated ? HomeScreen() : LoginForm(),
-        ),
+      home: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          // 登入和登出使用不同的動畫方向
+          final isLogin = child is HomeScreen;
+
+          // 為不同頁面設定不同的起始位置
+          final begin = isLogin
+              ? const Offset(1.0, 0.0) // 登入時從右側滑入
+              : const Offset(-1.0, 0.0); // 登出時從左側滑入
+
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: begin,
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOut,
+            )),
+            child: child,
+          );
+        },
+        child: isAuthenticated
+            ? const HomeScreen(key: ValueKey('home'))
+            : const LoginScreen(key: ValueKey('login')),
       ),
     );
   }
