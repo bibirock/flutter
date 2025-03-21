@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-21 11:25:54
+ * @LastEditTime: 2025-03-21 11:28:04
  * @Description: 
  */
 import 'settings/api_service_manager.dart';
@@ -24,6 +24,7 @@ class SSOApi {
       },
     );
 
+    // 驗證成功後，更新 header，以後的請求都會帶上 accessToken
     if (response.statusCode == 200) {
       _api.updateRequestHeader(
           'x-api-key', response.data['data']['accessToken']);

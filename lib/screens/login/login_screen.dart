@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/services/sso_api.dart';
+import '/providers/auth_provider.dart';
 
-class LoginForm extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LoginForm(),
+    );
+  }
+}
+
+// 改為 ConsumerStatefulWidget
+class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  ConsumerState<LoginForm> createState() => _LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+// 改為 ConsumerState
+class _LoginFormState extends ConsumerState<LoginForm> {
   final _accountController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  // 這裡可以直接讀取 TextField 的內容，
-  // 也可以在使用時再去 _accountController.text 取值。
   String get _account => _accountController.text;
   String get _password => _passwordController.text;
 
@@ -24,31 +37,20 @@ class _LoginFormState extends State<LoginForm> {
     super.dispose();
   }
 
-  // 呼叫 API 的登入方法
+  // 修改登入方法，使用 auth_provider 保存登入資訊
   Future<void> _login() async {
     final ssoApi = SSOApi();
     try {
       final result = await ssoApi.signInPassword(_account, _password);
 
-      // 成功時顯示登入成功的對話框
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text('登入成功'),
-            content: Text(
-              '帳號: ${result.accountId}\n'
-              'Token: ${result.accessToken}',
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('確定'),
-              ),
-            ],
+      // 使用 AuthNotifier 儲存登入資訊
+      ref.read(authProvider.notifier).signIn(
+            result.accessToken,
+            result.accountId,
           );
-        },
-      );
+
+      // 不需要顯示對話框，因為登入成功後會自動導航到首頁
+      // Riverpod 會監聽狀態變化並導航
     } catch (error) {
       // 失敗時顯示錯誤訊息
       showDialog(
