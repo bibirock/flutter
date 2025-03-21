@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:05:15
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-20 17:39:08
+ * @LastEditTime: 2025-03-21 17:54:03
  * @Description: 
  */
 
@@ -26,9 +26,11 @@ class ApiService {
 
   ApiService._internal(String baseUrl) {
     dio = Dio(BaseOptions(
-        baseUrl: baseUrl,
-        connectTimeout: const Duration(seconds: 10),
-        receiveTimeout: const Duration(seconds: 10)));
+      baseUrl: baseUrl,
+      connectTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 10),
+      validateStatus: (status) => status! < 500,
+    ));
 
     dio.interceptors.add(RetryInterceptor(
       dio: dio,
