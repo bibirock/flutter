@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
 
@@ -43,6 +46,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   // 修改登入方法，添加驗證邏輯
   Future<void> _login() async {
+    final l10n = S.of(context);
     // 檢查欄位並設定錯誤狀態
     setState(() {
       _accountHasError = _account.isEmpty;
@@ -72,7 +76,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('登入失敗'),
+            title: Text(l10n.login_screen_error),
             content: Text('錯誤: $error'),
             actions: [
               TextButton(
@@ -88,6 +92,8 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context);
+
     return Container(
       // 設定背景顏色，或可在 theme 中統一設定
       color: const Color(0xFF9AC972),
@@ -127,13 +133,15 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            hintText: '請輸入帳號',
+                            hintText: l10n.login_screen_enter_account,
                             border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
                               borderSide: BorderSide.none,
                             ),
-                            errorText: _accountHasError ? '請輸入帳號' : null,
+                            errorText: _accountHasError
+                                ? l10n.login_screen_enter_account
+                                : null,
                           ),
                           onChanged: (value) {
                             if (_accountHasError) {
@@ -151,13 +159,15 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: '請輸入密碼',
+                          hintText: l10n.login_screen_enter_password,
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
                             borderSide: BorderSide.none,
                           ),
-                          errorText: _passwordHasError ? '請輸入密碼' : null,
+                          errorText: _passwordHasError
+                              ? l10n.login_screen_enter_password
+                              : null,
                         ),
                         obscureText: true,
                         onChanged: (value) {
@@ -177,7 +187,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
                             ),
-                            child: const Text('忘記密碼?'),
+                            child: Text(l10n.login_screen_forgot_password),
                             onPressed: () {
                               print('忘記密碼');
                             },
@@ -195,10 +205,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                         onPressed: () {
                           _login();
                         },
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 30, vertical: 10),
-                          child: Text('登入'),
+                          child: Text(l10n.login_screen_button),
                         ),
                       ),
 
@@ -208,7 +218,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('還沒有帳號嗎?'),
+                            Text(l10n.login_screen_no_account),
                             TextButton(
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.white,
@@ -216,7 +226,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                                 minimumSize: Size(0, 0),
                                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               ),
-                              child: const Text('註冊'),
+                              child: Text(l10n.login_screen_register),
                               onPressed: () {
                                 print('註冊');
                               },

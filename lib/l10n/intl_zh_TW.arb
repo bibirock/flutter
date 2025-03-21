@@ -1,0 +1,40 @@
+{
+  "@@locale": "zh_TW",
+  "@@context": "LoginScreen",
+  "login_screen_username": "使用者名稱",
+  "@login_screen_username": {
+    "description": "登入頁面上使用者名稱輸入欄位的標籤文字"
+  },
+  "login_screen_password": "密碼",
+  "@login_screen_password": {
+    "description": "登入頁面上密碼輸入欄位的標籤文字"
+  },
+  "login_screen_button": "登入",
+  "@login_screen_button": {
+    "description": "登入按鈕文字"
+  },
+  "login_screen_enter_account": "請輸入帳號",
+  "@login_screen_enter_account": {
+    "description": "提示使用者必須輸入帳號的訊息"
+  },
+  "login_screen_enter_password": "請輸入密碼",
+  "@login_screen_enter_password": {
+    "description": "提示使用者必須輸入密碼的訊息"
+  },
+  "login_screen_forgot_password": "忘記密碼",
+  "@login_screen_forgot_password": {
+    "description": "忘記密碼連結文字"
+  },
+  "login_screen_no_account": "還沒有帳號嗎",
+  "@login_screen_no_account": {
+    "description": "詢問使用者是否尚未註冊帳號的提示"
+  },
+  "login_screen_register": "註冊",
+  "@login_screen_register": {
+    "description": "註冊帳號的按鈕或連結文字"
+  },
+  "login_screen_error": "登入失敗",
+  "@login_screen_error": {
+    "description": "登入失敗的提示文字"
+  }
+}

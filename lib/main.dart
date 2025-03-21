@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-12 18:10:09
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-21 14:45:02
+ * @LastEditTime: 2025-03-21 16:00:16
  * @Description: 
  */
 
@@ -16,7 +16,7 @@ import 'providers/auth_provider.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/home/home_screen.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,15 +52,13 @@ class _TracleDriverAppState extends ConsumerState<TracleDriverApp> {
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF9AC972)),
       // 添加本地化支持
       localizationsDelegates: const [
-        AppLocalizations.delegate,
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('zh', ''), // Traditional Chinese
-      ],
-      locale: const Locale('zh'),
+      supportedLocales: S.delegate.supportedLocales,
+      locale: const Locale('zh-TW'),
 
       home: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
