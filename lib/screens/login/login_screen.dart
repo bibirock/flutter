@@ -27,6 +27,10 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   final _accountController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  // 添加錯誤狀態變數
+  bool _accountHasError = false;
+  bool _passwordHasError = false;
+
   String get _account => _accountController.text;
   String get _password => _passwordController.text;
 
@@ -37,8 +41,19 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     super.dispose();
   }
 
-  // 修改登入方法，使用 auth_provider 保存登入資訊
+  // 修改登入方法，添加驗證邏輯
   Future<void> _login() async {
+    // 檢查欄位並設定錯誤狀態
+    setState(() {
+      _accountHasError = _account.isEmpty;
+      _passwordHasError = _password.isEmpty;
+    });
+
+    // 如果有錯誤，不繼續執行
+    if (_accountHasError || _passwordHasError) {
+      return;
+    }
+
     final ssoApi = SSOApi();
     try {
       final result = await ssoApi.signInPassword(_account, _password);
@@ -109,33 +124,49 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                         margin: const EdgeInsets.only(bottom: 20),
                         child: TextField(
                           controller: _accountController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             hintText: '請輸入帳號',
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15.0)),
                               borderSide: BorderSide.none,
                             ),
+                            errorText: _accountHasError ? '請輸入帳號' : null,
                           ),
+                          onChanged: (value) {
+                            if (_accountHasError) {
+                              setState(() {
+                                _accountHasError = false;
+                              });
+                            }
+                          },
                         ),
                       ),
 
                       // 密碼輸入
                       TextField(
                         controller: _passwordController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
                           hintText: '請輸入密碼',
-                          border: OutlineInputBorder(
+                          border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
                             borderSide: BorderSide.none,
                           ),
+                          errorText: _passwordHasError ? '請輸入密碼' : null,
                         ),
                         obscureText: true,
+                        onChanged: (value) {
+                          if (_passwordHasError) {
+                            setState(() {
+                              _passwordHasError = false;
+                            });
+                          }
+                        },
                       ),
 
                       // 忘記密碼
