@@ -27,12 +27,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "login_screen_enter_password": MessageLookupByLibrary.simpleMessage(
       "請輸入密碼",
     ),
-    "login_screen_error": MessageLookupByLibrary.simpleMessage("登入失敗"),
+    "login_screen_error": MessageLookupByLibrary.simpleMessage("登入失敗，請檢查帳號密碼"),
     "login_screen_forgot_password": MessageLookupByLibrary.simpleMessage(
       "忘記密碼",
     ),
     "login_screen_no_account": MessageLookupByLibrary.simpleMessage("還沒有帳號嗎"),
     "login_screen_password": MessageLookupByLibrary.simpleMessage("密碼"),
+    "login_screen_permission_denied": MessageLookupByLibrary.simpleMessage(
+      "帳號無使用權限，請聯絡管理員",
+    ),
     "login_screen_register": MessageLookupByLibrary.simpleMessage("註冊"),
     "login_screen_username": MessageLookupByLibrary.simpleMessage("使用者名稱"),
   };

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
@@ -61,23 +59,25 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     final ssoApi = SSOApi();
     try {
       final result = await ssoApi.signInPassword(_account, _password);
+      final verifyResult = await ssoApi.verifyAccessToken();
+
+      if (verifyResult.success == false) {
+        throw l10n.login_screen_permission_denied;
+      }
 
       // 使用 AuthNotifier 儲存登入資訊
       ref.read(authProvider.notifier).signIn(
             result.accessToken,
             result.accountId,
           );
-
-      // 不需要顯示對話框，因為登入成功後會自動導航到首頁
-      // Riverpod 會監聽狀態變化並導航
     } catch (error) {
+      print('錯誤: $error');
       // 失敗時顯示錯誤訊息
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Text(l10n.login_screen_error),
-            content: Text('錯誤: $error'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),

@@ -33,8 +33,12 @@
   "@login_screen_register": {
     "description": "註冊帳號的按鈕或連結文字"
   },
-  "login_screen_error": "登入失敗",
+  "login_screen_error": "登入失敗，請檢查帳號密碼",
   "@login_screen_error": {
     "description": "登入失敗的提示文字"
+  },
+  "login_screen_permission_denied": "帳號無使用權限，請聯絡管理員",
+  "@login_screen_permission_denied": {
+    "description": "帳號無使用權限的提示文字"
   }
 }

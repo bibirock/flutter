@@ -135,12 +135,22 @@ class S {
     );
   }
 
-  /// `登入失敗`
+  /// `登入失敗，請檢查帳號密碼`
   String get login_screen_error {
     return Intl.message(
-      '登入失敗',
+      '登入失敗，請檢查帳號密碼',
       name: 'login_screen_error',
       desc: '登入失敗的提示文字',
+      args: [],
+    );
+  }
+
+  /// `帳號無使用權限，請聯絡管理員`
+  String get login_screen_permission_denied {
+    return Intl.message(
+      '帳號無使用權限，請聯絡管理員',
+      name: 'login_screen_permission_denied',
+      desc: '帳號無使用權限的提示文字',
       args: [],
     );
   }
