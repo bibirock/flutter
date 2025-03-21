@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/services/sso_api.dart';
-import '/services/settings/api_service.dart';
+
+class HelloWorld extends ConsumerWidget {
+  const HelloWorld({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final String value = ref.watch(helloWorldProvider);
+    return Text(value);
+  }
+}
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -93,6 +104,7 @@ class _LoginFormState extends State<LoginForm> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
+                      HelloWorld(),
                       // Logo
                       Container(
                         margin: const EdgeInsets.only(bottom: 20),

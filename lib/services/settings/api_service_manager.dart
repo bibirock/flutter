@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:25:33
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-20 17:27:54
+ * @LastEditTime: 2025-03-20 17:54:27
  * @Description: 
  */
 
@@ -56,4 +56,6 @@ class ApiServiceManager {
       print('RemoteConfig 更新失敗：$e');
     }
   }
+
+  void updateRequestHeader() {}
 }
