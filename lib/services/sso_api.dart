@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-20 17:06:59
+ * @LastEditTime: 2025-03-21 11:25:54
  * @Description: 
  */
 import 'settings/api_service_manager.dart';
@@ -23,6 +23,11 @@ class SSOApi {
         'password': password,
       },
     );
+
+    if (response.statusCode == 200) {
+      _api.updateRequestHeader(
+          'x-api-key', response.data['data']['accessToken']);
+    }
 
     return SignInPassword.fromJson(response.data);
   }
