@@ -155,6 +155,36 @@ class S {
     );
   }
 
+  /// `寄出重設密碼信`
+  String get forget_password_screen_send_email {
+    return Intl.message(
+      '寄出重設密碼信',
+      name: 'forget_password_screen_send_email',
+      desc: '忘記密碼頁面上寄出重設密碼信的按鈕文字',
+      args: [],
+    );
+  }
+
+  /// `請輸入註冊時的帳號`
+  String get forget_password_screen_enter_account {
+    return Intl.message(
+      '請輸入註冊時的帳號',
+      name: 'forget_password_screen_enter_account',
+      desc: '提示使用者必須輸入註冊時的帳號的訊息',
+      args: [],
+    );
+  }
+
+  /// `返回登入畫面`
+  String get forget_password_screen_back {
+    return Intl.message(
+      '返回登入畫面',
+      name: 'forget_password_screen_back',
+      desc: '返回登入畫面的按鈕文字',
+      args: [],
+    );
+  }
+
   /// `載入中...`
   String get common_message_loading {
     return Intl.message(

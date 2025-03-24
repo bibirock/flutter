@@ -49,6 +49,10 @@
   "@forget_password_screen_enter_account": {
     "description": "提示使用者必須輸入註冊時的帳號的訊息"
   },
+  "forget_password_screen_back": "返回登入畫面",
+  "@forget_password_screen_back": {
+    "description": "返回登入畫面的按鈕文字"
+  },
   "common_message_loading": "載入中...",
   "@common_message_loading": {
     "description": "通用的載入中提示文字"

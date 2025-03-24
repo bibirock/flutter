@@ -1,18 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_in_password.dart';
+part of 'response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SignInPassword _$SignInPasswordFromJson(Map<String, dynamic> json) =>
-    SignInPassword(
+SignInPasswordResponse _$SignInPasswordResponseFromJson(
+        Map<String, dynamic> json) =>
+    SignInPasswordResponse(
       accountId: json['accountId'] as String,
       accessToken: json['accessToken'] as String,
     );
 
-Map<String, dynamic> _$SignInPasswordToJson(SignInPassword instance) =>
+Map<String, dynamic> _$SignInPasswordResponseToJson(
+        SignInPasswordResponse instance) =>
     <String, dynamic>{
       'accountId': instance.accountId,
       'accessToken': instance.accessToken,

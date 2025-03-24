@@ -1,19 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'access_token_verify.dart';
+part of 'response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccessTokenVerify _$AccessTokenVerifyFromJson(Map<String, dynamic> json) =>
-    AccessTokenVerify(
+SendResetCodeResponse _$SendResetCodeResponseFromJson(
+        Map<String, dynamic> json) =>
+    SendResetCodeResponse(
+      id: json['id'] as String,
       success: json['success'] as bool,
-      userAccountId: json['userAccountId'] as String,
     );
 
-Map<String, dynamic> _$AccessTokenVerifyToJson(AccessTokenVerify instance) =>
+Map<String, dynamic> _$SendResetCodeResponseToJson(
+        SendResetCodeResponse instance) =>
     <String, dynamic>{
       'success': instance.success,
-      'userAccountId': instance.userAccountId,
+      'id': instance.id,
     };

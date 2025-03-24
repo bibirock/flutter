@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/sso_api/dto/auth/sign_in_password/request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
-import '../../widgets/toast.dart';
+import '/widgets/toast.dart';
+import 'forget_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -58,7 +60,12 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
     final ssoApi = SSOApi();
 
-    final result = await ssoApi.signInPassword(_account, _password);
+    final result = await ssoApi.signInPassword(
+      SignInPasswordRequest(
+        account: _account,
+        password: _password,
+      ),
+    );
 
     // 驗證失敗時顯示錯誤訊息
     if (result.hasError) {
@@ -79,8 +86,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     ToastUtil.init(context);
 
     return Container(
-      // 設定背景顏色，或可在 theme 中統一設定
-      color: const Color(0xFF9AC972),
       // SafeArea 可避免劉海或虛擬按鈕遮擋
       child: SafeArea(
         // 使用 Stack 讓子元件可以自由定位
@@ -173,7 +178,12 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                             ),
                             child: Text(l10n.login_screen_forgot_password),
                             onPressed: () {
-                              print('忘記密碼');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ForgetPasswordScreen(),
+                                ),
+                              );
                             },
                           ),
                         ],

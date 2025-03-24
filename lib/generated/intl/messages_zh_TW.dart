@@ -30,6 +30,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "common_message_no_internet": MessageLookupByLibrary.simpleMessage(
       "沒有網路連線",
     ),
+    "forget_password_screen_back": MessageLookupByLibrary.simpleMessage(
+      "返回登入畫面",
+    ),
+    "forget_password_screen_enter_account":
+        MessageLookupByLibrary.simpleMessage("請輸入註冊時的帳號"),
+    "forget_password_screen_send_email": MessageLookupByLibrary.simpleMessage(
+      "寄出重設密碼信",
+    ),
     "login_screen_button": MessageLookupByLibrary.simpleMessage("登入"),
     "login_screen_enter_account": MessageLookupByLibrary.simpleMessage("請輸入帳號"),
     "login_screen_enter_password": MessageLookupByLibrary.simpleMessage(
