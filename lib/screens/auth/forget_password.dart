@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
@@ -74,7 +72,6 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context);
     ToastUtil.init(context);
 
     return SafeArea(

@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 17:29:51
+ * @LastEditTime: 2025-03-24 18:50:14
  * @Description: 
  */
 
@@ -20,7 +20,7 @@ class SSOApi {
   final _api = ApiServiceManager.ssoApi;
   static const application = 'TRACLE-APP';
 
-  /// 使用帳號密碼登入
+  // 使用帳號密碼登入
   Future<ApiResponse<SignInPasswordResponse>> signInPassword(
       SignInPasswordRequest request) async {
     const url = "/auth/sign-in/password";
@@ -43,7 +43,7 @@ class SSOApi {
     return apiResponse;
   }
 
-  /// 驗證 accessToken 是否有使用權限
+  // 驗證 accessToken 是否有使用權限
   Future<ApiResponse<AccessTokenVerifyResponse>> verifyAccessToken() async {
     const url = "/access-token/verify?application=$application";
 
@@ -55,7 +55,7 @@ class SSOApi {
             AccessTokenVerifyResponse.fromJson(json as Map<String, dynamic>));
   }
 
-  /// 送出忘記密碼驗證碼
+  // 送出忘記密碼驗證碼
   Future<ApiResponse<SendResetCodeResponse>> sendResetCode(
       SendResetCodeRequest request) async {
     const url = "/sso-web/forget-password";
@@ -68,4 +68,6 @@ class SSOApi {
     return ApiResponse<SendResetCodeResponse>.fromJson(response.data,
         (json) => SendResetCodeResponse.fromJson(json as Map<String, dynamic>));
   }
+
+  // 驗證忘記密碼驗證碼
 }

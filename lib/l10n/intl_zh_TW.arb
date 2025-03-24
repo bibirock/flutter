@@ -57,6 +57,14 @@
   "@forget_password_screen_email_sent": {
     "description": "重設密碼信已寄出的提示文字"
   },
+  "verify_register_screen_code": "請輸入驗證碼",
+  "@verify_register_screen_code": {
+    "description": "驗證註冊頁面上驗證碼輸入欄位的標籤文字"
+  },
+  "verify_register_screen_button": "驗證",
+  "@verify_register_screen_button": {
+    "description": "驗證註冊按鈕文字"
+  },
   "common_message_loading": "載入中...",
   "@common_message_loading": {
     "description": "通用的載入中提示文字"
