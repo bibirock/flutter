@@ -9,7 +9,6 @@ part of 'response.dart';
 SendResetCodeResponse _$SendResetCodeResponseFromJson(
         Map<String, dynamic> json) =>
     SendResetCodeResponse(
-      id: json['id'] as String,
       success: json['success'] as bool,
     );
 
@@ -17,5 +16,4 @@ Map<String, dynamic> _$SendResetCodeResponseToJson(
         SendResetCodeResponse instance) =>
     <String, dynamic>{
       'success': instance.success,
-      'id': instance.id,
     };

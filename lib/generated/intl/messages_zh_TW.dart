@@ -33,6 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "forget_password_screen_back": MessageLookupByLibrary.simpleMessage(
       "返回登入畫面",
     ),
+    "forget_password_screen_email_sent": MessageLookupByLibrary.simpleMessage(
+      "已發送重設密碼信件",
+    ),
     "forget_password_screen_enter_account":
         MessageLookupByLibrary.simpleMessage("請輸入註冊時的帳號"),
     "forget_password_screen_send_email": MessageLookupByLibrary.simpleMessage(

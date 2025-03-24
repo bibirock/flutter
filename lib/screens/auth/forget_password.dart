@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
+import '/models/sso_api/dto/auth/send_reset_code/request.dart';
+import '/widgets/toast.dart';
 import '/services/sso_api.dart';
-import '/providers/auth_provider.dart';
-import '../../widgets/toast.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
@@ -27,11 +29,16 @@ class ForgetPasswordForm extends ConsumerStatefulWidget {
 // 改為 ConsumerState
 class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
   final _accountController = TextEditingController();
-
-  // 添加錯誤狀態變數
   bool _accountHasError = false;
+  late S l10n;
 
   String get _account => _accountController.text;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    l10n = S.of(context); // 初始化 l10n
+  }
 
   @override
   void dispose() {
@@ -40,7 +47,7 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
   }
 
   // 修改登入方法，添加驗證邏輯
-  Future<void> _ForgetPassword() async {
+  Future<void> _forgetPassword() async {
     // 檢查欄位並設定錯誤狀態
     setState(() {
       _accountHasError = _account.isEmpty;
@@ -52,6 +59,17 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
     }
 
     // 呼叫 API
+    final ssoApi = SSOApi();
+    final response = await ssoApi.sendResetCode(SendResetCodeRequest(
+      account: _account,
+    ));
+
+    if (response.hasError) {
+      ToastUtil.showError(errorMessage: response.errors!.first.message);
+      return;
+    }
+
+    ToastUtil.showSuccess(message: l10n.forget_password_screen_email_sent);
   }
 
   @override
@@ -121,7 +139,7 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                         textStyle: const TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        _ForgetPassword();
+                        _forgetPassword();
                       },
                       child: Padding(
                         padding:

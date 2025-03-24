@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-12 18:10:09
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 16:22:05
+ * @LastEditTime: 2025-03-24 17:39:39
  * @Description: 
  */
 
@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/auth_provider.dart';
-import 'screens/login/login_screen.dart';
+import 'screens/auth/login.dart';
 import 'screens/home/home_screen.dart';
 import 'generated/l10n.dart';
 

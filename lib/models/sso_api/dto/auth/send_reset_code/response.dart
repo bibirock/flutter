@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 16:46:37
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 17:16:49
+ * @LastEditTime: 2025-03-24 17:33:29
  * @Description: 
  */
 
@@ -13,10 +13,8 @@ part 'response.g.dart';
 @JsonSerializable()
 class SendResetCodeResponse {
   final bool success;
-  final String id;
 
   SendResetCodeResponse({
-    required this.id,
     required this.success,
   });
 

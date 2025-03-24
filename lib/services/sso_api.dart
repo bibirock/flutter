@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 17:23:14
+ * @LastEditTime: 2025-03-24 17:29:51
  * @Description: 
  */
 
@@ -58,7 +58,7 @@ class SSOApi {
   /// 送出忘記密碼驗證碼
   Future<ApiResponse<SendResetCodeResponse>> sendResetCode(
       SendResetCodeRequest request) async {
-    const url = "/account/reset-code/send";
+    const url = "/sso-web/forget-password";
 
     final response = await _api.dio.post(
       url,

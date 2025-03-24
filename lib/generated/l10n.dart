@@ -185,6 +185,16 @@ class S {
     );
   }
 
+  /// `已發送重設密碼信件`
+  String get forget_password_screen_email_sent {
+    return Intl.message(
+      '已發送重設密碼信件',
+      name: 'forget_password_screen_email_sent',
+      desc: '重設密碼信已寄出的提示文字',
+      args: [],
+    );
+  }
+
   /// `載入中...`
   String get common_message_loading {
     return Intl.message(

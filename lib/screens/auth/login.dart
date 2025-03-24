@@ -5,7 +5,7 @@ import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
 import '/widgets/toast.dart';
-import 'forget_password_screen.dart';
+import 'forget_password.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
