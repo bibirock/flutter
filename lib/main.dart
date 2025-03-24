@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-12 18:10:09
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-21 16:00:16
+ * @LastEditTime: 2025-03-24 16:22:05
  * @Description: 
  */
 
@@ -15,7 +15,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/auth_provider.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/home/home_screen.dart';
-
 import 'generated/l10n.dart';
 
 void main() async {
@@ -46,7 +45,6 @@ class _TracleDriverAppState extends ConsumerState<TracleDriverApp> {
   @override
   Widget build(BuildContext context) {
     final isAuthenticated = ref.watch(authProvider);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF9AC972)),

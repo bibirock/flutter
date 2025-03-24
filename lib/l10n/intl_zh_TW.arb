@@ -41,6 +41,14 @@
   "@login_screen_permission_denied": {
     "description": "帳號無使用權限的提示文字"
   },
+  "forget_password_screen_send_email": "寄出重設密碼信",
+  "@forget_password_screen_send_email": {
+    "description": "忘記密碼頁面上寄出重設密碼信的按鈕文字"
+  },
+  "forget_password_screen_enter_account": "請輸入註冊時的帳號",
+  "@forget_password_screen_enter_account": {
+    "description": "提示使用者必須輸入註冊時的帳號的訊息"
+  },
   "common_message_loading": "載入中...",
   "@common_message_loading": {
     "description": "通用的載入中提示文字"

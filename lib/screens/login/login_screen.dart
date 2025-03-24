@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
-import '/widgets/dialog/error_dialog.dart';
+import '../../widgets/toast.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -45,7 +45,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   // 修改登入方法，添加驗證邏輯
   Future<void> _login() async {
-    final l10n = S.of(context);
     // 檢查欄位並設定錯誤狀態
     setState(() {
       _accountHasError = _account.isEmpty;
@@ -63,10 +62,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
     // 驗證失敗時顯示錯誤訊息
     if (result.hasError) {
-      ErrorDialog.show(
-        context: context,
-        errorMessage: result.errors!.first.message,
-      );
+      ToastUtil.showError(errorMessage: result.errors!.first.message);
       return;
     }
 
@@ -80,6 +76,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
+    ToastUtil.init(context);
 
     return Container(
       // 設定背景顏色，或可在 theme 中統一設定
