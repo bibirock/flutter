@@ -22,6 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "common_message_confirm": MessageLookupByLibrary.simpleMessage("確認"),
+    "common_message_error": MessageLookupByLibrary.simpleMessage("發生錯誤，請稍後再試"),
+    "common_message_has_error": MessageLookupByLibrary.simpleMessage("發生錯誤"),
+    "common_message_loading": MessageLookupByLibrary.simpleMessage("載入中..."),
+    "common_message_no_data": MessageLookupByLibrary.simpleMessage("沒有資料"),
+    "common_message_no_internet": MessageLookupByLibrary.simpleMessage(
+      "沒有網路連線",
+    ),
     "login_screen_button": MessageLookupByLibrary.simpleMessage("登入"),
     "login_screen_enter_account": MessageLookupByLibrary.simpleMessage("請輸入帳號"),
     "login_screen_enter_password": MessageLookupByLibrary.simpleMessage(

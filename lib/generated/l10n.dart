@@ -154,6 +154,66 @@ class S {
       args: [],
     );
   }
+
+  /// `載入中...`
+  String get common_message_loading {
+    return Intl.message(
+      '載入中...',
+      name: 'common_message_loading',
+      desc: '通用的載入中提示文字',
+      args: [],
+    );
+  }
+
+  /// `發生錯誤，請稍後再試`
+  String get common_message_error {
+    return Intl.message(
+      '發生錯誤，請稍後再試',
+      name: 'common_message_error',
+      desc: '通用的錯誤提示文字',
+      args: [],
+    );
+  }
+
+  /// `沒有資料`
+  String get common_message_no_data {
+    return Intl.message(
+      '沒有資料',
+      name: 'common_message_no_data',
+      desc: '通用的沒有資料提示文字',
+      args: [],
+    );
+  }
+
+  /// `沒有網路連線`
+  String get common_message_no_internet {
+    return Intl.message(
+      '沒有網路連線',
+      name: 'common_message_no_internet',
+      desc: '通用的沒有網路連線提示文字',
+      args: [],
+    );
+  }
+
+  /// `發生錯誤`
+  String get common_message_has_error {
+    return Intl.message(
+      '發生錯誤',
+      name: 'common_message_has_error',
+      desc: '通用的錯誤訊息提示文字',
+      args: [],
+    );
+  }
+
+  /// `確認`
+  String get common_message_confirm {
+    return Intl.message(
+      '確認',
+      name: 'common_message_confirm',
+      desc: '通用的確認按鈕文字',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -8,8 +8,8 @@ part of 'access_token_verify.dart';
 
 AccessTokenVerify _$AccessTokenVerifyFromJson(Map<String, dynamic> json) =>
     AccessTokenVerify(
-      json['success'] as bool,
-      json['userAccountId'] as String,
+      success: json['success'] as bool,
+      userAccountId: json['userAccountId'] as String,
     );
 
 Map<String, dynamic> _$AccessTokenVerifyToJson(AccessTokenVerify instance) =>

@@ -8,8 +8,8 @@ part of 'sign_in_password.dart';
 
 SignInPassword _$SignInPasswordFromJson(Map<String, dynamic> json) =>
     SignInPassword(
-      json['accountId'] as String,
-      json['accessToken'] as String,
+      accountId: json['accountId'] as String,
+      accessToken: json['accessToken'] as String,
     );
 
 Map<String, dynamic> _$SignInPasswordToJson(SignInPassword instance) =>

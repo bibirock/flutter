@@ -40,5 +40,29 @@
   "login_screen_permission_denied": "帳號無使用權限，請聯絡管理員",
   "@login_screen_permission_denied": {
     "description": "帳號無使用權限的提示文字"
+  },
+  "common_message_loading": "載入中...",
+  "@common_message_loading": {
+    "description": "通用的載入中提示文字"
+  },
+  "common_message_error": "發生錯誤，請稍後再試",
+  "@common_message_error": {
+    "description": "通用的錯誤提示文字"
+  },
+  "common_message_no_data": "沒有資料",
+  "@common_message_no_data": {
+    "description": "通用的沒有資料提示文字"
+  },
+  "common_message_no_internet": "沒有網路連線",
+  "@common_message_no_internet": {
+    "description": "通用的沒有網路連線提示文字"
+  },
+  "common_message_has_error": "發生錯誤",
+  "@common_message_has_error": {
+    "description": "通用的錯誤訊息提示文字"
+  },
+  "common_message_confirm": "確認",
+  "@common_message_confirm": {
+    "description": "通用的確認按鈕文字"
   }
 }

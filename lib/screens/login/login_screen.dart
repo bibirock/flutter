@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
+import '/widgets/dialog/error_dialog.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -57,37 +58,23 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     }
 
     final ssoApi = SSOApi();
-    try {
-      final result = await ssoApi.signInPassword(_account, _password);
-      final verifyResult = await ssoApi.verifyAccessToken();
 
-      if (verifyResult.success == false) {
-        throw l10n.login_screen_permission_denied;
-      }
+    final result = await ssoApi.signInPassword(_account, _password);
 
-      // 使用 AuthNotifier 儲存登入資訊
-      ref.read(authProvider.notifier).signIn(
-            result.accessToken,
-            result.accountId,
-          );
-    } catch (error) {
-      print('錯誤: $error');
-      // 失敗時顯示錯誤訊息
-      showDialog(
+    // 驗證失敗時顯示錯誤訊息
+    if (result.hasError) {
+      ErrorDialog.show(
         context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(l10n.login_screen_error),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('確定'),
-              ),
-            ],
-          );
-        },
+        errorMessage: result.errors!.first.message,
       );
+      return;
     }
+
+    // 使用 AuthNotifier 儲存登入資訊
+    ref.read(authProvider.notifier).signIn(
+          result.data!.accessToken,
+          result.data!.accountId,
+        );
   }
 
   @override
