@@ -19,19 +19,27 @@ class LoadingButton extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: LoadingService().isLoading,
       builder: (context, isLoading, _) {
+        final ButtonStyle effectiveStyle = style ?? ElevatedButton.styleFrom();
         return ElevatedButton(
-          style: style,
+          style: effectiveStyle,
           onPressed: isLoading ? null : onPressed,
-          child: Container(
-              alignment: Alignment.center,
-              child: isLoading
-                  ? Lottie.asset(
-                      'assets/animation/loading.json',
-                      fit: BoxFit.fill,
-                      width: 100,
-                      height: 70,
-                    )
-                  : child),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              if (true) {
+                // 在載入狀態下，使用與原按鈕相同的 constraints 來顯示動畫
+                return SizedBox(
+                  width: constraints.maxWidth,
+                  height: constraints.maxHeight,
+                  child: Lottie.asset(
+                    'assets/animation/loading.json',
+                    fit: BoxFit.contain,
+                  ),
+                );
+              }
+              // 非載入狀態下顯示原按鈕內容
+              return child;
+            },
+          ),
         );
       },
     );

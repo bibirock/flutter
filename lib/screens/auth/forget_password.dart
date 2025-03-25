@@ -141,9 +141,8 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 15),
                           textStyle: const TextStyle(fontSize: 20),
+                          minimumSize: const Size.fromHeight(48),
                         ),
                         onPressed: _sendResetCodeEmail,
                         child: Text(l10n.forget_password_screen_send_email)),

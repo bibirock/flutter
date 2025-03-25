@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 17:49:38
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-25 17:39:00
+ * @LastEditTime: 2025-03-25 17:58:02
  * @Description: 
  */
 import 'package:flutter/material.dart';
@@ -78,7 +78,7 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
       return;
     }
 
-    ToastUtil.showSuccess(message: l10n.forget_password_screen_email_sent);
+    // 跳轉至設定新密碼頁面
   }
 
   @override
@@ -110,11 +110,14 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
                     ),
 
                     // 提醒文字
-                    Text(
-                      l10n.verify_code_screen_enter_title,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Text(
+                        l10n.verify_code_screen_enter_title,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
 
