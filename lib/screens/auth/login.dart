@@ -83,168 +83,163 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final l10n = S.of(context);
-    ToastUtil.init(context);
 
-    return Container(
-      // SafeArea 可避免劉海或虛擬按鈕遮擋
-      child: SafeArea(
-        // 使用 Stack 讓子元件可以自由定位
-        child: Stack(
-          children: [
-            // 1. 主要內容置中
-            Center(
-              child: SingleChildScrollView(
-                // SingleChildScrollView 可以避免在小螢幕時超出範圍
-                child: Container(
-                  width: 300,
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      // Logo
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        child: Image.asset(
-                          'assets/images/tracle-logo.png',
-                          width: 200,
-                          height: 200,
-                        ),
+    return SafeArea(
+      // 使用 Stack 讓子元件可以自由定位
+      child: Stack(
+        children: [
+          // 1. 主要內容置中
+          Center(
+            child: SingleChildScrollView(
+              // SingleChildScrollView 可以避免在小螢幕時超出範圍
+              child: Container(
+                width: 300,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    // Logo
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: Image.asset(
+                        'assets/images/tracle-logo.png',
+                        width: 200,
+                        height: 200,
                       ),
+                    ),
 
-                      // 帳號輸入
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        child: TextField(
-                          controller: _accountController,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: l10n.login_screen_enter_account,
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide.none,
-                            ),
-                            errorText: _accountHasError
-                                ? l10n.login_screen_enter_account
-                                : null,
-                          ),
-                          onChanged: (value) {
-                            if (_accountHasError) {
-                              setState(() {
-                                _accountHasError = false;
-                              });
-                            }
-                          },
-                        ),
-                      ),
-
-                      // 密碼輸入
-                      TextField(
-                        controller: _passwordController,
+                    // 帳號輸入
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: TextField(
+                        controller: _accountController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: l10n.login_screen_enter_password,
+                          hintText: l10n.login_screen_enter_account,
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
                             borderSide: BorderSide.none,
                           ),
-                          errorText: _passwordHasError
-                              ? l10n.login_screen_enter_password
+                          errorText: _accountHasError
+                              ? l10n.login_screen_enter_account
                               : null,
                         ),
-                        obscureText: true,
                         onChanged: (value) {
-                          if (_passwordHasError) {
+                          if (_accountHasError) {
                             setState(() {
-                              _passwordHasError = false;
+                              _accountHasError = false;
                             });
                           }
                         },
                       ),
+                    ),
 
-                      // 忘記密碼
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
+                    // 密碼輸入
+                    TextField(
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: l10n.login_screen_enter_password,
+                        border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderSide: BorderSide.none,
+                        ),
+                        errorText: _passwordHasError
+                            ? l10n.login_screen_enter_password
+                            : null,
+                      ),
+                      obscureText: true,
+                      onChanged: (value) {
+                        if (_passwordHasError) {
+                          setState(() {
+                            _passwordHasError = false;
+                          });
+                        }
+                      },
+                    ),
+
+                    // 忘記密碼
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                          ),
+                          child: Text(l10n.login_screen_forgot_password),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgetPasswordScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+
+                    // 登入按鈕
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        textStyle: const TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        _login();
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        child: Text(l10n.login_screen_button),
+                      ),
+                    ),
+
+                    // 註冊
+                    Container(
+                      margin: const EdgeInsets.only(top: 30),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(l10n.login_screen_no_account),
                           TextButton(
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size(0, 0),
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
-                            child: Text(l10n.login_screen_forgot_password),
+                            child: Text(l10n.login_screen_register),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ForgetPasswordScreen(),
-                                ),
-                              );
+                              print('註冊');
                             },
-                          ),
+                          )
                         ],
                       ),
-
-                      // 登入按鈕
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.white,
-                          textStyle: const TextStyle(fontSize: 20),
-                        ),
-                        onPressed: () {
-                          _login();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 10),
-                          child: Text(l10n.login_screen_button),
-                        ),
-                      ),
-
-                      // 註冊
-                      Container(
-                        margin: const EdgeInsets.only(top: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(l10n.login_screen_no_account),
-                            TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                padding: EdgeInsets.zero,
-                                minimumSize: Size(0, 0),
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              child: Text(l10n.login_screen_register),
-                              onPressed: () {
-                                print('註冊');
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
+          ),
 
-            // 2. 版號固定在畫面右下角
-            Positioned(
-              bottom: 16,
-              right: 16,
-              child: Text(
-                '1.8.1(26)',
-                style: TextStyle(color: Colors.white),
-              ),
+          // 2. 版號固定在畫面右下角
+          Positioned(
+            bottom: 16,
+            right: 16,
+            child: Text(
+              '1.8.1(26)',
+              style: TextStyle(color: Colors.white),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

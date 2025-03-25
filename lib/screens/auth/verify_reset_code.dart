@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 17:49:38
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 18:08:38
+ * @LastEditTime: 2025-03-25 10:31:57
  * @Description: 
  */
 import 'package:flutter/material.dart';
@@ -79,8 +79,6 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    ToastUtil.init(context);
-
     return SafeArea(
       // 使用 Stack 讓子元件可以自由定位
       child: Stack(

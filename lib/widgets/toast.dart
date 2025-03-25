@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 15:46:07
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 16:14:38
+ * @LastEditTime: 2025-03-25 10:56:55
  * @Description: 使用 Fluttertoast 實現的提示工具類
  */
 
@@ -12,18 +12,24 @@ import 'package:fluttertoast/fluttertoast.dart';
 class ToastUtil {
   static FToast? _fToast;
 
-  /// 初始化 FToast，必須在使用前調用
+  /// 初始化 FToast
   static void init(BuildContext context) {
+    // 確保在有 Overlay 的 context 中初始化
     _fToast = FToast().init(context);
   }
 
-  /// 檢查是否已初始化
-  static bool _checkInit() {
-    if (_fToast == null) {
-      print('錯誤: 請先調用 ToastUtil.init(context)');
-      return false;
-    }
-    return true;
+  /// 檢查 FToast 是否已初始化
+  static bool _ensureInitialized() {
+    if (_fToast != null) return true;
+
+    print('錯誤: Toast 尚未初始化，請確保先調用 ToastUtil.init(context)');
+    // 使用原生 Toast 顯示錯誤
+    Fluttertoast.showToast(
+      msg: "Toast 尚未初始化",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+    );
+    return false;
   }
 
   /// 顯示錯誤吐司提示
@@ -34,7 +40,7 @@ class ToastUtil {
     Duration duration = const Duration(seconds: 2),
     ToastGravity gravity = ToastGravity.TOP,
   }) {
-    if (!_checkInit()) return;
+    if (!_ensureInitialized()) return;
 
     Widget toast = _buildToastWithIcon(
       message: errorMessage,
@@ -59,7 +65,7 @@ class ToastUtil {
     Color backgroundColor = Colors.black54,
     IconData? icon,
   }) {
-    if (!_checkInit()) return;
+    if (!_ensureInitialized()) return;
 
     Widget toast = _buildToastWithIcon(
       message: message,
@@ -82,7 +88,7 @@ class ToastUtil {
     Duration duration = const Duration(seconds: 2),
     ToastGravity gravity = ToastGravity.TOP,
   }) {
-    if (!_checkInit()) return;
+    if (!_ensureInitialized()) return;
 
     Widget toast = _buildToastWithIcon(
       message: message,
@@ -105,7 +111,7 @@ class ToastUtil {
     Duration duration = const Duration(seconds: 2),
     ToastGravity gravity = ToastGravity.TOP,
   }) {
-    if (!_checkInit()) return;
+    if (!_ensureInitialized()) return;
 
     Widget toast = _buildToastWithIcon(
       message: message,

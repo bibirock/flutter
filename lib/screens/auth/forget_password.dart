@@ -72,8 +72,6 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    ToastUtil.init(context);
-
     return SafeArea(
       // 使用 Stack 讓子元件可以自由定位
       child: Stack(
