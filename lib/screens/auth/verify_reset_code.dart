@@ -2,37 +2,40 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 17:49:38
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-25 10:31:57
+ * @LastEditTime: 2025-03-25 17:39:00
  * @Description: 
  */
 import 'package:flutter/material.dart';
+import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
-import '/models/sso_api/dto/auth/send_reset_code/request.dart';
 import '/widgets/toast.dart';
 import '/services/sso_api.dart';
 
-class ForgetPasswordScreen extends StatelessWidget {
-  const ForgetPasswordScreen({super.key});
+class VerifyResetCodeScreen extends StatelessWidget {
+  final String accountName;
+
+  const VerifyResetCodeScreen({super.key, required this.accountName});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ForgetPasswordForm(),
+      body: VerifyResetCodeForm(accountName: accountName),
     );
   }
 }
 
 // 改為 ConsumerStatefulWidget
-class ForgetPasswordForm extends ConsumerStatefulWidget {
-  const ForgetPasswordForm({super.key});
+class VerifyResetCodeForm extends ConsumerStatefulWidget {
+  final String accountName;
+  const VerifyResetCodeForm({super.key, required this.accountName});
 
   @override
-  ConsumerState<ForgetPasswordForm> createState() => _ForgetPasswordFormState();
+  ConsumerState<VerifyResetCodeForm> createState() =>
+      _VerifyResetCodeFormState();
 }
 
-// 改為 ConsumerState
-class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
+class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
   final _resetCodeController = TextEditingController();
   bool _accountHasError = false;
   late S l10n;
@@ -65,8 +68,9 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
 
     // 呼叫 API
     final ssoApi = SSOApi();
-    final response = await ssoApi.sendResetCode(SendResetCodeRequest(
-      account: _resetCode,
+    final response = await ssoApi.verifyResetCode(VerifyResetCodeRequest(
+      account: widget.accountName,
+      code: _resetCode,
     ));
 
     if (response.hasError) {
@@ -105,7 +109,16 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                       ),
                     ),
 
-                    // 帳號輸入
+                    // 提醒文字
+                    Text(
+                      l10n.verify_code_screen_enter_title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
+
+                    // 驗證碼輸入
                     Container(
                       margin: const EdgeInsets.only(bottom: 20),
                       child: TextField(
@@ -113,14 +126,14 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: l10n.forget_password_screen_enter_account,
+                          hintText: l10n.verify_code_screen_code,
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
                             borderSide: BorderSide.none,
                           ),
                           errorText: _accountHasError
-                              ? l10n.forget_password_screen_enter_account
+                              ? l10n.verify_code_screen_code
                               : null,
                         ),
                         onChanged: (value) {
@@ -133,7 +146,7 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                       ),
                     ),
 
-                    // 登入按鈕
+                    // 驗證按鈕
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -146,11 +159,11 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                        child: Text(l10n.forget_password_screen_send_email),
+                        child: Text(l10n.verify_code_screen_button),
                       ),
                     ),
 
-                    // 返回登入
+                    // 返回輸入帳號
                     Container(
                       margin: const EdgeInsets.only(top: 30),
                       child: Row(
@@ -163,7 +176,7 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                               minimumSize: Size(0, 0),
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
-                            child: Text(l10n.forget_password_screen_back),
+                            child: Text(l10n.verify_code_screen_resend),
                             onPressed: () {
                               Navigator.pop(context);
                             },

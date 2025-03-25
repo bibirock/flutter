@@ -57,13 +57,21 @@
   "@forget_password_screen_email_sent": {
     "description": "重設密碼信已寄出的提示文字"
   },
-  "verify_register_screen_code": "請輸入驗證碼",
-  "@verify_register_screen_code": {
+  "verify_code_screen_code": "請輸入驗證碼",
+  "@verify_code_screen_code": {
     "description": "驗證註冊頁面上驗證碼輸入欄位的標籤文字"
   },
-  "verify_register_screen_button": "驗證",
-  "@verify_register_screen_button": {
+  "verify_code_screen_button": "驗證",
+  "@verify_code_screen_button": {
     "description": "驗證註冊按鈕文字"
+  },
+  "verify_code_screen_enter_title": "重設信已寄出，請至您的註冊信箱收取信件",
+  "@verify_code_screen_enter_title": {
+    "description": "提示使用者必須輸入驗證碼的訊息"
+  },
+  "verify_code_screen_resend": "重新寄送",
+  "@verify_code_screen_resend": {
+    "description": "重新寄送驗證碼的按鈕文字"
   },
   "common_message_loading": "載入中...",
   "@common_message_loading": {

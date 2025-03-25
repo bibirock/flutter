@@ -6,15 +6,15 @@ part of 'response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-VerifyPasswordResponse _$VerifyPasswordResponseFromJson(
+VerifyResetCodeResponse _$VerifyResetCodeResponseFromJson(
         Map<String, dynamic> json) =>
-    VerifyPasswordResponse(
+    VerifyResetCodeResponse(
       success: json['success'] as bool,
       token: json['token'] as String,
     );
 
-Map<String, dynamic> _$VerifyPasswordResponseToJson(
-        VerifyPasswordResponse instance) =>
+Map<String, dynamic> _$VerifyResetCodeResponseToJson(
+        VerifyResetCodeResponse instance) =>
     <String, dynamic>{
       'success': instance.success,
       'token': instance.token,

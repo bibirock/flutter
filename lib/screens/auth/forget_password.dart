@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import '/providers/loading_provider.dart';
+import '/widgets/loading.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/models/sso_api/dto/auth/send_reset_code/request.dart';
 import '/widgets/toast.dart';
 import '/services/sso_api.dart';
+import 'verify_reset_code.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
@@ -46,7 +48,7 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
   }
 
   // 修改登入方法，添加驗證邏輯
-  Future<void> _forgetPassword() async {
+  Future<void> _sendResetCodeEmail() async {
     // 檢查欄位並設定錯誤狀態
     setState(() {
       _accountHasError = _account.isEmpty;
@@ -57,18 +59,26 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
       return;
     }
 
-    // 呼叫 API
-    final ssoApi = SSOApi();
-    final response = await ssoApi.sendResetCode(SendResetCodeRequest(
-      account: _account,
-    ));
+    // 使用 LoadingService 自動管理 loading 狀態
+    await LoadingService().withLoading(() async {
+      // 呼叫 API
+      final ssoApi = SSOApi();
+      final response = await ssoApi.sendResetCode(SendResetCodeRequest(
+        account: _account,
+      ));
 
-    if (response.hasError) {
-      ToastUtil.showError(errorMessage: response.errors!.first.message);
-      return;
-    }
+      if (response.hasError) {
+        ToastUtil.showError(errorMessage: response.errors!.first.message);
+        return;
+      }
 
-    ToastUtil.showSuccess(message: l10n.forget_password_screen_email_sent);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VerifyResetCodeScreen(accountName: _account),
+        ),
+      );
+    });
   }
 
   @override
@@ -127,24 +137,16 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                       ),
                     ),
 
-                    // 寄出驗證信
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        _forgetPassword();
-                      },
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                        child: Text(l10n.forget_password_screen_send_email),
-                      ),
-                    ),
-
-                    Lottie.asset('assets/animation/loading.json'),
+                    LoadingButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 30, vertical: 15),
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        onPressed: _sendResetCodeEmail,
+                        child: Text(l10n.forget_password_screen_send_email)),
 
                     // 返回登入
                     Container(

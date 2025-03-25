@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-25 13:52:04
+ * @LastEditTime: 2025-03-25 17:53:16
  * @Description: 
  */
 
@@ -15,6 +15,8 @@ import '/models/sso_api/dto/auth/send_reset_code/response.dart';
 import '/models/sso_api/dto/auth/send_reset_code/request.dart';
 import '/models/sso_api/dto/auth/sign_in_password/response.dart';
 import '/models/sso_api/dto/auth/sign_in_password/request.dart';
+import '/models/sso_api/dto/auth/verify_reset_code/response.dart';
+import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
 import 'package:dio/dio.dart';
 
 class SSOApi {
@@ -94,4 +96,13 @@ class SSOApi {
   }
 
   // 驗證忘記密碼驗證碼
+  Future<ApiResponse<VerifyResetCodeResponse>> verifyResetCode(
+      VerifyResetCodeRequest request) async {
+    return _sendRequest<VerifyResetCodeResponse>(
+      url: "/verification/password/reset/number",
+      method: 'POST',
+      data: request.toJson(),
+      fromJson: VerifyResetCodeResponse.fromJson,
+    );
+  }
 }

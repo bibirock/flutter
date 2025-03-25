@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -191,21 +196,41 @@ class S {
   }
 
   /// `請輸入驗證碼`
-  String get verify_register_screen_code {
+  String get verify_code_screen_code {
     return Intl.message(
       '請輸入驗證碼',
-      name: 'verify_register_screen_code',
+      name: 'verify_code_screen_code',
       desc: '驗證註冊頁面上驗證碼輸入欄位的標籤文字',
       args: [],
     );
   }
 
   /// `驗證`
-  String get verify_register_screen_button {
+  String get verify_code_screen_button {
     return Intl.message(
       '驗證',
-      name: 'verify_register_screen_button',
+      name: 'verify_code_screen_button',
       desc: '驗證註冊按鈕文字',
+      args: [],
+    );
+  }
+
+  /// `重設信已寄出，請至您的註冊信箱收取信件`
+  String get verify_code_screen_enter_title {
+    return Intl.message(
+      '重設信已寄出，請至您的註冊信箱收取信件',
+      name: 'verify_code_screen_enter_title',
+      desc: '提示使用者必須輸入驗證碼的訊息',
+      args: [],
+    );
+  }
+
+  /// `重新寄送`
+  String get verify_code_screen_resend {
+    return Intl.message(
+      '重新寄送',
+      name: 'verify_code_screen_resend',
+      desc: '重新寄送驗證碼的按鈕文字',
       args: [],
     );
   }
