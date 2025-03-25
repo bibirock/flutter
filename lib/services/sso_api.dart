@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 18:50:14
+ * @LastEditTime: 2025-03-25 13:52:04
  * @Description: 
  */
 
@@ -15,25 +15,54 @@ import '/models/sso_api/dto/auth/send_reset_code/response.dart';
 import '/models/sso_api/dto/auth/send_reset_code/request.dart';
 import '/models/sso_api/dto/auth/sign_in_password/response.dart';
 import '/models/sso_api/dto/auth/sign_in_password/request.dart';
+import 'package:dio/dio.dart';
 
 class SSOApi {
   final _api = ApiServiceManager.ssoApi;
   static const application = 'TRACLE-APP';
 
+  Future<ApiResponse<T>> _sendRequest<T>({
+    required String url,
+    required String method,
+    required T Function(Map<String, dynamic> json) fromJson,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    try {
+      final Response response;
+
+      switch (method.toUpperCase()) {
+        case 'GET':
+          response = await _api.dio.get(url, queryParameters: queryParameters);
+          break;
+        case 'POST':
+          response = await _api.dio
+              .post(url, data: data, queryParameters: queryParameters);
+          break;
+        // 可以根據需要添加其他HTTP方法
+        default:
+          throw Exception('不支援的HTTP方法: $method');
+      }
+
+      return ApiResponse<T>.fromJson(
+          response.data, (json) => fromJson(json as Map<String, dynamic>));
+    } catch (e) {
+      return ApiResponse<T>.error(
+        errorCode: 'unknown_error',
+        errorMessage: 'error: ${e.toString()}',
+      );
+    }
+  }
+
   // 使用帳號密碼登入
   Future<ApiResponse<SignInPasswordResponse>> signInPassword(
       SignInPasswordRequest request) async {
-    const url = "/auth/sign-in/password";
-
-    final response = await _api.dio.post(
-      url,
+    final apiResponse = await _sendRequest<SignInPasswordResponse>(
+      url: "/auth/sign-in/password",
+      method: 'POST',
       data: request.toJson(),
+      fromJson: SignInPasswordResponse.fromJson,
     );
-
-    final apiResponse = ApiResponse<SignInPasswordResponse>.fromJson(
-        response.data,
-        (json) =>
-            SignInPasswordResponse.fromJson(json as Map<String, dynamic>));
 
     // 驗證成功後，更新 header，以後的請求都會帶上 accessToken
     if (!apiResponse.hasError && apiResponse.data != null) {
@@ -45,28 +74,23 @@ class SSOApi {
 
   // 驗證 accessToken 是否有使用權限
   Future<ApiResponse<AccessTokenVerifyResponse>> verifyAccessToken() async {
-    const url = "/access-token/verify?application=$application";
-
-    final response = await _api.dio.get(url);
-
-    return ApiResponse<AccessTokenVerifyResponse>.fromJson(
-        response.data,
-        (json) =>
-            AccessTokenVerifyResponse.fromJson(json as Map<String, dynamic>));
+    return _sendRequest<AccessTokenVerifyResponse>(
+      url: "/access-token/verify",
+      method: 'GET',
+      queryParameters: {'application': application},
+      fromJson: AccessTokenVerifyResponse.fromJson,
+    );
   }
 
   // 送出忘記密碼驗證碼
   Future<ApiResponse<SendResetCodeResponse>> sendResetCode(
       SendResetCodeRequest request) async {
-    const url = "/sso-web/forget-password";
-
-    final response = await _api.dio.post(
-      url,
+    return _sendRequest<SendResetCodeResponse>(
+      url: "/sso-web/forget-password",
+      method: 'POST',
       data: request.toJson(),
+      fromJson: SendResetCodeResponse.fromJson,
     );
-
-    return ApiResponse<SendResetCodeResponse>.fromJson(response.data,
-        (json) => SendResetCodeResponse.fromJson(json as Map<String, dynamic>));
   }
 
   // 驗證忘記密碼驗證碼

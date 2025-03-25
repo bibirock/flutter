@@ -2,12 +2,10 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 14:13:16
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 14:28:16
+ * @LastEditTime: 2025-03-25 13:54:32
  * @Description: 
  */
 import 'package:json_annotation/json_annotation.dart';
-
-part 'search_result.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class SearchResult<T> {

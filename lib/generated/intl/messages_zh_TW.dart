@@ -22,40 +22,43 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "common_message_confirm": MessageLookupByLibrary.simpleMessage("確認"),
-    "common_message_error": MessageLookupByLibrary.simpleMessage("發生錯誤，請稍後再試"),
-    "common_message_has_error": MessageLookupByLibrary.simpleMessage("發生錯誤"),
-    "common_message_loading": MessageLookupByLibrary.simpleMessage("載入中..."),
-    "common_message_no_data": MessageLookupByLibrary.simpleMessage("沒有資料"),
-    "common_message_no_internet": MessageLookupByLibrary.simpleMessage(
-      "沒有網路連線",
-    ),
-    "forget_password_screen_back": MessageLookupByLibrary.simpleMessage(
-      "返回登入畫面",
-    ),
-    "forget_password_screen_email_sent": MessageLookupByLibrary.simpleMessage(
-      "已發送重設密碼信件",
-    ),
-    "forget_password_screen_enter_account":
-        MessageLookupByLibrary.simpleMessage("請輸入註冊時的帳號"),
-    "forget_password_screen_send_email": MessageLookupByLibrary.simpleMessage(
-      "寄出重設密碼信",
-    ),
-    "login_screen_button": MessageLookupByLibrary.simpleMessage("登入"),
-    "login_screen_enter_account": MessageLookupByLibrary.simpleMessage("請輸入帳號"),
-    "login_screen_enter_password": MessageLookupByLibrary.simpleMessage(
-      "請輸入密碼",
-    ),
-    "login_screen_error": MessageLookupByLibrary.simpleMessage("登入失敗，請檢查帳號密碼"),
-    "login_screen_forgot_password": MessageLookupByLibrary.simpleMessage(
-      "忘記密碼",
-    ),
-    "login_screen_no_account": MessageLookupByLibrary.simpleMessage("還沒有帳號嗎"),
-    "login_screen_password": MessageLookupByLibrary.simpleMessage("密碼"),
-    "login_screen_permission_denied": MessageLookupByLibrary.simpleMessage(
-      "帳號無使用權限，請聯絡管理員",
-    ),
-    "login_screen_register": MessageLookupByLibrary.simpleMessage("註冊"),
-    "login_screen_username": MessageLookupByLibrary.simpleMessage("使用者名稱"),
-  };
+        "common_message_confirm": MessageLookupByLibrary.simpleMessage("確認"),
+        "common_message_error":
+            MessageLookupByLibrary.simpleMessage("發生錯誤，請稍後再試"),
+        "common_message_has_error":
+            MessageLookupByLibrary.simpleMessage("發生錯誤"),
+        "common_message_loading":
+            MessageLookupByLibrary.simpleMessage("載入中..."),
+        "common_message_no_data": MessageLookupByLibrary.simpleMessage("沒有資料"),
+        "common_message_no_internet":
+            MessageLookupByLibrary.simpleMessage("沒有網路連線"),
+        "forget_password_screen_back":
+            MessageLookupByLibrary.simpleMessage("返回登入畫面"),
+        "forget_password_screen_email_sent":
+            MessageLookupByLibrary.simpleMessage("已發送重設密碼信件"),
+        "forget_password_screen_enter_account":
+            MessageLookupByLibrary.simpleMessage("請輸入註冊時的帳號"),
+        "forget_password_screen_send_email":
+            MessageLookupByLibrary.simpleMessage("寄出重設密碼信"),
+        "login_screen_button": MessageLookupByLibrary.simpleMessage("登入"),
+        "login_screen_enter_account":
+            MessageLookupByLibrary.simpleMessage("請輸入帳號"),
+        "login_screen_enter_password":
+            MessageLookupByLibrary.simpleMessage("請輸入密碼"),
+        "login_screen_error":
+            MessageLookupByLibrary.simpleMessage("登入失敗，請檢查帳號密碼"),
+        "login_screen_forgot_password":
+            MessageLookupByLibrary.simpleMessage("忘記密碼"),
+        "login_screen_no_account":
+            MessageLookupByLibrary.simpleMessage("還沒有帳號嗎"),
+        "login_screen_password": MessageLookupByLibrary.simpleMessage("密碼"),
+        "login_screen_permission_denied":
+            MessageLookupByLibrary.simpleMessage("帳號無使用權限，請聯絡管理員"),
+        "login_screen_register": MessageLookupByLibrary.simpleMessage("註冊"),
+        "login_screen_username": MessageLookupByLibrary.simpleMessage("使用者名稱"),
+        "verify_register_screen_button":
+            MessageLookupByLibrary.simpleMessage("驗證"),
+        "verify_register_screen_code":
+            MessageLookupByLibrary.simpleMessage("請輸入驗證碼")
+      };
 }

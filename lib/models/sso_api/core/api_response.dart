@@ -2,14 +2,12 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-24 14:28:59
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-24 14:34:03
+ * @LastEditTime: 2025-03-25 13:54:15
  * @Description: 
  */
 import 'package:json_annotation/json_annotation.dart';
 import 'api_module.dart';
 import 'api_error.dart';
-
-part 'api_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class ApiResponse<T> {
@@ -37,6 +35,33 @@ class ApiResponse<T> {
               .toList()
           : null,
       data: json.containsKey('data') ? fromJsonT(json['data']) : null,
+    );
+  }
+
+  factory ApiResponse.error({
+    required String errorCode,
+    required String errorMessage,
+    String errorName = "API_ERROR",
+    String errorType = "ERROR",
+    String moduleCode = "ERROR",
+    String moduleName = "API_MODULE",
+    String moduleVersion = "1.0",
+  }) {
+    return ApiResponse(
+      module: ApiModule(
+        code: moduleCode,
+        name: moduleName,
+        version: moduleVersion,
+      ),
+      errors: [
+        ApiError(
+          code: errorCode,
+          message: errorMessage,
+          name: errorName,
+          type: errorType,
+        ),
+      ],
+      data: null,
     );
   }
 
