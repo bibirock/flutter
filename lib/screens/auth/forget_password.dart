@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/models/sso_api/dto/auth/send_reset_code/request.dart';
@@ -126,7 +127,7 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                       ),
                     ),
 
-                    // 登入按鈕
+                    // 寄出驗證信
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -142,6 +143,8 @@ class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
                         child: Text(l10n.forget_password_screen_send_email),
                       ),
                     ),
+
+                    Lottie.asset('assets/animation/loading.json'),
 
                     // 返回登入
                     Container(
