@@ -1,3 +1,10 @@
+/*
+ * @Author: Joe.Chen
+ * @Date: 2025-03-25 14:29:44
+ * @LastEditors: Joe.Chen joechen@tracle-tw.com
+ * @LastEditTime: 2025-03-26 10:23:16
+ * @Description: 
+ */
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '/providers/loading_provider.dart';
@@ -25,11 +32,11 @@ class LoadingButton extends StatelessWidget {
           onPressed: isLoading ? null : onPressed,
           child: LayoutBuilder(
             builder: (context, constraints) {
-              if (true) {
+              if (isLoading) {
                 // 在載入狀態下，使用與原按鈕相同的 constraints 來顯示動畫
                 return SizedBox(
                   width: constraints.maxWidth,
-                  height: constraints.maxHeight,
+                  height: 48,
                   child: Lottie.asset(
                     'assets/animation/loading.json',
                     fit: BoxFit.contain,
