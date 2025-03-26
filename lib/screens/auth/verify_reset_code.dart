@@ -7,6 +7,7 @@ import '/widgets/loading.dart';
 import '/generated/l10n.dart';
 import '/widgets/toast.dart';
 import '/services/sso_api.dart';
+import './reset_password_by_code.dart';
 
 class VerifyResetCodeScreen extends StatelessWidget {
   final String accountName;
@@ -99,7 +100,15 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
         return;
       }
 
-      // 跳轉至設定新密碼頁面
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResetPasswordByCodeScreen(
+            accountName: widget.accountName,
+            token: response.data!.token,
+          ),
+        ),
+      );
     });
   }
 
@@ -180,7 +189,7 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
                           minimumSize: const Size.fromHeight(48),
                         ),
                         onPressed: _verifyResetCode,
-                        child: Text(l10n.forget_password_screen_send_email)),
+                        child: Text(l10n.verify_code_screen_button)),
 
                     // 返回輸入帳號 & 倒數計時
                     Container(

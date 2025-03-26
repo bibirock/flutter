@@ -7,6 +7,7 @@ import '/widgets/loading.dart';
 import '/generated/l10n.dart';
 import '/widgets/toast.dart';
 import '/services/sso_api.dart';
+import './login.dart';
 
 class ResetPasswordByCodeScreen extends StatelessWidget {
   final String accountName;
@@ -64,6 +65,7 @@ class _ResetPasswordByCodeFromState
     // 檢查欄位並設定錯誤狀態
     setState(() {
       _passwordHasError = _password.isEmpty;
+      _passwordHasError = _password.length < 8;
     });
 
     // 如果有錯誤，不繼續執行
@@ -86,7 +88,16 @@ class _ResetPasswordByCodeFromState
         return;
       }
 
-      // 跳轉至設定新密碼頁面
+      ToastUtil.showSuccess(message: l10n.update_password_screen_success);
+
+      await Future.delayed(const Duration(seconds: 3));
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+      );
     });
   }
 
@@ -116,22 +127,22 @@ class _ResetPasswordByCodeFromState
                       ),
                     ),
 
-                    // 驗證碼輸入
+                    // 新密碼輸入
                     Container(
-                      margin: const EdgeInsets.only(bottom: 20),
+                      margin: const EdgeInsets.only(bottom: 10),
                       child: TextField(
                         controller: _passwordController,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          hintText: l10n.verify_code_screen_code,
+                          hintText: l10n.update_password_screen_new_password,
                           border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0)),
                             borderSide: BorderSide.none,
                           ),
                           errorText: _passwordHasError
-                              ? l10n.verify_code_screen_code
+                              ? l10n.update_password_screen_format_error
                               : null,
                         ),
                         onChanged: (value) {
@@ -144,13 +155,20 @@ class _ResetPasswordByCodeFromState
                       ),
                     ),
 
-                    Text(
-                      l10n.update_password_screen_hint,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        l10n.update_password_screen_hint,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
+
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text('返回')),
 
                     // 更新密碼按鈕
                     LoadingButton(
@@ -161,7 +179,7 @@ class _ResetPasswordByCodeFromState
                           minimumSize: const Size.fromHeight(48),
                         ),
                         onPressed: _updatePassword,
-                        child: Text(l10n.forget_password_screen_send_email)),
+                        child: Text(l10n.common_message_confirm)),
                   ],
                 ),
               ),

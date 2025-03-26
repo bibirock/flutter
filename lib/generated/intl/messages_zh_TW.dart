@@ -57,11 +57,20 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "login_screen_register": MessageLookupByLibrary.simpleMessage("註冊"),
     "login_screen_username": MessageLookupByLibrary.simpleMessage("使用者名稱"),
+    "update_password_screen_error": MessageLookupByLibrary.simpleMessage(
+      "密碼更新失敗，請稍後再試",
+    ),
+    "update_password_screen_format_error": MessageLookupByLibrary.simpleMessage(
+      "密碼格式錯誤",
+    ),
     "update_password_screen_hint": MessageLookupByLibrary.simpleMessage(
       "您可以使用8個字元以上的英文字母、數字、或任意符號",
     ),
     "update_password_screen_new_password": MessageLookupByLibrary.simpleMessage(
       "新密碼",
+    ),
+    "update_password_screen_success": MessageLookupByLibrary.simpleMessage(
+      "密碼更新成功，請重新登入",
     ),
     "update_password_screen_update": MessageLookupByLibrary.simpleMessage(
       "更新密碼",

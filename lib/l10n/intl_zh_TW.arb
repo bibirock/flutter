@@ -77,6 +77,10 @@
   "@update_password_screen_hint": {
     "description": "更新密碼頁面上密碼輸入欄位的提示文字"
   },
+  "update_password_screen_format_error": "密碼格式錯誤",
+  "@update_password_screen_format_error": {
+    "description": "密碼格式錯誤的提示文字"
+  },
   "update_password_screen_new_password": "新密碼",
   "@update_password_screen_new_password": {
     "description": "更新密碼頁面上新密碼輸入欄位的標籤文字"
@@ -84,6 +88,14 @@
   "update_password_screen_update": "更新密碼",
   "@update_password_screen_update": {
     "description": "更新密碼按鈕文字"
+  },
+  "update_password_screen_success": "密碼更新成功，請重新登入",
+  "@update_password_screen_success": {
+    "description": "密碼更新成功的提示文字"
+  },
+  "update_password_screen_error": "密碼更新失敗，請稍後再試",
+  "@update_password_screen_error": {
+    "description": "密碼更新失敗的提示文字"
   },
   "common_message_loading": "載入中...",
   "@common_message_loading": {

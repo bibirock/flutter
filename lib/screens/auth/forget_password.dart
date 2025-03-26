@@ -19,7 +19,6 @@ class ForgetPasswordScreen extends StatelessWidget {
   }
 }
 
-// 改為 ConsumerStatefulWidget
 class ForgetPasswordForm extends ConsumerStatefulWidget {
   const ForgetPasswordForm({super.key});
 
@@ -27,7 +26,6 @@ class ForgetPasswordForm extends ConsumerStatefulWidget {
   ConsumerState<ForgetPasswordForm> createState() => _ForgetPasswordFormState();
 }
 
-// 改為 ConsumerState
 class _ForgetPasswordFormState extends ConsumerState<ForgetPasswordForm> {
   final _resetCodeController = TextEditingController();
   final _loadingService = LoadingService();

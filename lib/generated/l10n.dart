@@ -245,6 +245,16 @@ class S {
     );
   }
 
+  /// `密碼格式錯誤`
+  String get update_password_screen_format_error {
+    return Intl.message(
+      '密碼格式錯誤',
+      name: 'update_password_screen_format_error',
+      desc: '密碼格式錯誤的提示文字',
+      args: [],
+    );
+  }
+
   /// `新密碼`
   String get update_password_screen_new_password {
     return Intl.message(
@@ -261,6 +271,26 @@ class S {
       '更新密碼',
       name: 'update_password_screen_update',
       desc: '更新密碼按鈕文字',
+      args: [],
+    );
+  }
+
+  /// `密碼更新成功，請重新登入`
+  String get update_password_screen_success {
+    return Intl.message(
+      '密碼更新成功，請重新登入',
+      name: 'update_password_screen_success',
+      desc: '密碼更新成功的提示文字',
+      args: [],
+    );
+  }
+
+  /// `密碼更新失敗，請稍後再試`
+  String get update_password_screen_error {
+    return Intl.message(
+      '密碼更新失敗，請稍後再試',
+      name: 'update_password_screen_error',
+      desc: '密碼更新失敗的提示文字',
       args: [],
     );
   }
