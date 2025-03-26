@@ -295,6 +295,96 @@ class S {
     );
   }
 
+  /// `姓名`
+  String get register_screen_name {
+    return Intl.message(
+      '姓名',
+      name: 'register_screen_name',
+      desc: '註冊頁面上姓名輸入欄位的標籤文字',
+      args: [],
+    );
+  }
+
+  /// `請輸入姓名`
+  String get register_screen_name_error {
+    return Intl.message(
+      '請輸入姓名',
+      name: 'register_screen_name_error',
+      desc: '提示使用者必須輸入姓名的訊息',
+      args: [],
+    );
+  }
+
+  /// `帳號`
+  String get register_screen_account {
+    return Intl.message(
+      '帳號',
+      name: 'register_screen_account',
+      desc: '註冊頁面上帳號輸入欄位的標籤文字',
+      args: [],
+    );
+  }
+
+  /// `請輸入帳號`
+  String get register_screen_account_error {
+    return Intl.message(
+      '請輸入帳號',
+      name: 'register_screen_account_error',
+      desc: '提示使用者必須輸入帳號的訊息',
+      args: [],
+    );
+  }
+
+  /// `電子郵件`
+  String get register_screen_email {
+    return Intl.message(
+      '電子郵件',
+      name: 'register_screen_email',
+      desc: '註冊頁面上電子郵件輸入欄位的標籤文字',
+      args: [],
+    );
+  }
+
+  /// `請輸入電子郵件`
+  String get register_screen_email_error {
+    return Intl.message(
+      '請輸入電子郵件',
+      name: 'register_screen_email_error',
+      desc: '提示使用者必須輸入電子郵件的訊息',
+      args: [],
+    );
+  }
+
+  /// `密碼`
+  String get register_screen_password {
+    return Intl.message(
+      '密碼',
+      name: 'register_screen_password',
+      desc: '註冊頁面上密碼輸入欄位的標籤文字',
+      args: [],
+    );
+  }
+
+  /// `請輸入密碼`
+  String get register_screen_password_error {
+    return Intl.message(
+      '請輸入密碼',
+      name: 'register_screen_password_error',
+      desc: '提示使用者必須輸入密碼的訊息',
+      args: [],
+    );
+  }
+
+  /// `註冊`
+  String get register_screen_button {
+    return Intl.message(
+      '註冊',
+      name: 'register_screen_button',
+      desc: '註冊按鈕文字',
+      args: [],
+    );
+  }
+
   /// `載入中...`
   String get common_message_loading {
     return Intl.message(

@@ -57,6 +57,21 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "login_screen_register": MessageLookupByLibrary.simpleMessage("註冊"),
     "login_screen_username": MessageLookupByLibrary.simpleMessage("使用者名稱"),
+    "register_screen_account": MessageLookupByLibrary.simpleMessage("帳號"),
+    "register_screen_account_error": MessageLookupByLibrary.simpleMessage(
+      "請輸入帳號",
+    ),
+    "register_screen_button": MessageLookupByLibrary.simpleMessage("註冊"),
+    "register_screen_email": MessageLookupByLibrary.simpleMessage("電子郵件"),
+    "register_screen_email_error": MessageLookupByLibrary.simpleMessage(
+      "請輸入電子郵件",
+    ),
+    "register_screen_name": MessageLookupByLibrary.simpleMessage("姓名"),
+    "register_screen_name_error": MessageLookupByLibrary.simpleMessage("請輸入姓名"),
+    "register_screen_password": MessageLookupByLibrary.simpleMessage("密碼"),
+    "register_screen_password_error": MessageLookupByLibrary.simpleMessage(
+      "請輸入密碼",
+    ),
     "update_password_screen_error": MessageLookupByLibrary.simpleMessage(
       "密碼更新失敗，請稍後再試",
     ),

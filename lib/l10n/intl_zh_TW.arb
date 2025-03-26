@@ -97,6 +97,42 @@
   "@update_password_screen_error": {
     "description": "密碼更新失敗的提示文字"
   },
+  "register_screen_name": "姓名",
+  "@register_screen_name": {
+    "description": "註冊頁面上姓名輸入欄位的標籤文字"
+  },
+  "register_screen_name_error": "請輸入姓名",
+  "@register_screen_name_error": {
+    "description": "提示使用者必須輸入姓名的訊息"
+  },
+  "register_screen_account": "帳號",
+  "@register_screen_account": {
+    "description": "註冊頁面上帳號輸入欄位的標籤文字"
+  },
+  "register_screen_account_error": "請輸入帳號",
+  "@register_screen_account_error": {
+    "description": "提示使用者必須輸入帳號的訊息"
+  },
+  "register_screen_email": "電子郵件",
+  "@register_screen_email": {
+    "description": "註冊頁面上電子郵件輸入欄位的標籤文字"
+  },
+  "register_screen_email_error": "請輸入電子郵件",
+  "@register_screen_email_error": {
+    "description": "提示使用者必須輸入電子郵件的訊息"
+  },
+  "register_screen_password": "密碼",
+  "@register_screen_password": {
+    "description": "註冊頁面上密碼輸入欄位的標籤文字"
+  },
+  "register_screen_password_error": "請輸入密碼",
+  "@register_screen_password_error": {
+    "description": "提示使用者必須輸入密碼的訊息"
+  },
+  "register_screen_button": "註冊",
+  "@register_screen_button": {
+    "description": "註冊按鈕文字"
+  },
   "common_message_loading": "載入中...",
   "@common_message_loading": {
     "description": "通用的載入中提示文字"
