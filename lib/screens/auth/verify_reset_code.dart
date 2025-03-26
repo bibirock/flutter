@@ -1,10 +1,4 @@
-/*
- * @Author: Joe.Chen
- * @Date: 2025-03-24 17:49:38
- * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-25 17:58:02
- * @Description: 
- */
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,7 +19,6 @@ class VerifyResetCodeScreen extends StatelessWidget {
   }
 }
 
-// 改為 ConsumerStatefulWidget
 class VerifyResetCodeForm extends ConsumerStatefulWidget {
   final String accountName;
   const VerifyResetCodeForm({super.key, required this.accountName});
@@ -39,8 +32,31 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
   final _resetCodeController = TextEditingController();
   bool _accountHasError = false;
   late S l10n;
+  Timer? _timer;
+  int _remainingSeconds = 30;
 
   String get _resetCode => _resetCodeController.text;
+
+  @override
+  void initState() {
+    super.initState();
+    _startCountdown();
+  }
+
+  void _startCountdown() {
+    // 初始化倒數秒數
+    _remainingSeconds = 30;
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingSeconds > 0) {
+        setState(() {
+          _remainingSeconds--;
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
 
   @override
   void didChangeDependencies() {
@@ -50,6 +66,7 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
 
   @override
   void dispose() {
+    _timer?.cancel();
     _resetCodeController.dispose();
     super.dispose();
   }
@@ -160,13 +177,13 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
                         _verifyResetCode();
                       },
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 10),
                         child: Text(l10n.verify_code_screen_button),
                       ),
                     ),
 
-                    // 返回輸入帳號
+                    // 返回輸入帳號 & 倒數計時
                     Container(
                       margin: const EdgeInsets.only(top: 30),
                       child: Row(
@@ -176,14 +193,24 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
                             style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
                               padding: EdgeInsets.zero,
-                              minimumSize: Size(0, 0),
+                              minimumSize: const Size(0, 0),
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
+                            // 只有倒數結束 (剩餘秒數為 0) 才可點擊
+                            onPressed: _remainingSeconds == 0
+                                ? () {
+                                    Navigator.pop(context);
+                                    // 若要點擊後重新開始倒數，可呼叫 _startCountdown();
+                                  }
+                                : null,
                             child: Text(l10n.verify_code_screen_resend),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          )
+                          ),
+                          const SizedBox(width: 8),
+                          // 顯示倒數秒數，倒數中才顯示數字
+                          Text(
+                            _remainingSeconds > 0 ? '$_remainingSeconds' : '',
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ],
                       ),
                     ),

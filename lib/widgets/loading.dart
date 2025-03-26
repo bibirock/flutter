@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-25 14:29:44
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-26 10:23:16
+ * @LastEditTime: 2025-03-26 10:37:40
  * @Description: 
  */
 import 'package:flutter/material.dart';
@@ -13,8 +13,9 @@ class LoadingButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Widget child;
   final ButtonStyle? style;
+  final loadingService = LoadingService();
 
-  const LoadingButton({
+  LoadingButton({
     super.key,
     required this.onPressed,
     required this.child,
@@ -24,7 +25,7 @@ class LoadingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable: LoadingService().isLoading,
+      valueListenable: loadingService.isLoading,
       builder: (context, isLoading, _) {
         final ButtonStyle effectiveStyle = style ?? ElevatedButton.styleFrom();
         return ElevatedButton(
