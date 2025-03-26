@@ -113,6 +113,18 @@
   "@register_screen_account_error": {
     "description": "提示使用者必須輸入帳號的訊息"
   },
+  "register_screen_account_length_error": "請確認帳號大於等於六字元",
+  "@register_screen_account_length_error": {
+    "description": "提示使用者帳號必須至少六字元的訊息"
+  },
+  "register_screen_password_length_error": "請確認密碼大於等於八字元",
+  "@register_screen_password_length_error": {
+    "description": "提示使用者密碼必須至少八字元的訊息"
+  },
+  "register_screen_email_format_error": "請確認電子郵件格式",
+  "@register_screen_email_format_error": {
+    "description": "提示使用者電子郵件格式不正確的訊息"
+  },
   "register_screen_email": "電子郵件",
   "@register_screen_email": {
     "description": "註冊頁面上電子郵件輸入欄位的標籤文字"

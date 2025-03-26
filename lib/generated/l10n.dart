@@ -335,6 +335,36 @@ class S {
     );
   }
 
+  /// `請確認帳號大於等於六字元`
+  String get register_screen_account_length_error {
+    return Intl.message(
+      '請確認帳號大於等於六字元',
+      name: 'register_screen_account_length_error',
+      desc: '提示使用者帳號必須至少六字元的訊息',
+      args: [],
+    );
+  }
+
+  /// `請確認密碼大於等於八字元`
+  String get register_screen_password_length_error {
+    return Intl.message(
+      '請確認密碼大於等於八字元',
+      name: 'register_screen_password_length_error',
+      desc: '提示使用者密碼必須至少八字元的訊息',
+      args: [],
+    );
+  }
+
+  /// `請確認電子郵件格式`
+  String get register_screen_email_format_error {
+    return Intl.message(
+      '請確認電子郵件格式',
+      name: 'register_screen_email_format_error',
+      desc: '提示使用者電子郵件格式不正確的訊息',
+      args: [],
+    );
+  }
+
   /// `電子郵件`
   String get register_screen_email {
     return Intl.message(

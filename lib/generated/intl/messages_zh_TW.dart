@@ -61,10 +61,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "register_screen_account_error": MessageLookupByLibrary.simpleMessage(
       "請輸入帳號",
     ),
+    "register_screen_account_length_error":
+        MessageLookupByLibrary.simpleMessage("請確認帳號大於等於六字元"),
     "register_screen_button": MessageLookupByLibrary.simpleMessage("註冊"),
     "register_screen_email": MessageLookupByLibrary.simpleMessage("電子郵件"),
     "register_screen_email_error": MessageLookupByLibrary.simpleMessage(
       "請輸入電子郵件",
+    ),
+    "register_screen_email_format_error": MessageLookupByLibrary.simpleMessage(
+      "請確認電子郵件格式",
     ),
     "register_screen_login": MessageLookupByLibrary.simpleMessage("登入"),
     "register_screen_name": MessageLookupByLibrary.simpleMessage("姓名"),
@@ -73,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "register_screen_password_error": MessageLookupByLibrary.simpleMessage(
       "請輸入密碼",
     ),
+    "register_screen_password_length_error":
+        MessageLookupByLibrary.simpleMessage("請確認密碼大於等於八字元"),
     "register_screen_success": MessageLookupByLibrary.simpleMessage(
       "註冊流程已完成，請聯繫管理員與您核對資訊",
     ),
