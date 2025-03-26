@@ -66,11 +66,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "register_screen_email_error": MessageLookupByLibrary.simpleMessage(
       "請輸入電子郵件",
     ),
+    "register_screen_login": MessageLookupByLibrary.simpleMessage("登入"),
     "register_screen_name": MessageLookupByLibrary.simpleMessage("姓名"),
     "register_screen_name_error": MessageLookupByLibrary.simpleMessage("請輸入姓名"),
     "register_screen_password": MessageLookupByLibrary.simpleMessage("密碼"),
     "register_screen_password_error": MessageLookupByLibrary.simpleMessage(
       "請輸入密碼",
+    ),
+    "register_screen_success": MessageLookupByLibrary.simpleMessage(
+      "註冊流程已完成，請聯繫管理員與您核對資訊",
     ),
     "update_password_screen_error": MessageLookupByLibrary.simpleMessage(
       "密碼更新失敗，請稍後再試",
@@ -93,7 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "verify_code_screen_button": MessageLookupByLibrary.simpleMessage("驗證"),
     "verify_code_screen_code": MessageLookupByLibrary.simpleMessage("請輸入驗證碼"),
     "verify_code_screen_enter_title": MessageLookupByLibrary.simpleMessage(
-      "重設信已寄出，請至您的註冊信箱收取信件",
+      "驗證碼已寄出，請至您的註冊信箱收取信件",
     ),
     "verify_code_screen_resend": MessageLookupByLibrary.simpleMessage("重新寄送"),
   };

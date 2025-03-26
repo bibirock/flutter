@@ -6,7 +6,7 @@ import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
 import '/widgets/toast.dart';
 import 'forget_password.dart';
-import 'register_account.dart';
+import 'sign_up.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

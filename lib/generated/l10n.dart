@@ -215,10 +215,10 @@ class S {
     );
   }
 
-  /// `重設信已寄出，請至您的註冊信箱收取信件`
+  /// `驗證碼已寄出，請至您的註冊信箱收取信件`
   String get verify_code_screen_enter_title {
     return Intl.message(
-      '重設信已寄出，請至您的註冊信箱收取信件',
+      '驗證碼已寄出，請至您的註冊信箱收取信件',
       name: 'verify_code_screen_enter_title',
       desc: '提示使用者必須輸入驗證碼的訊息',
       args: [],
@@ -381,6 +381,26 @@ class S {
       '註冊',
       name: 'register_screen_button',
       desc: '註冊按鈕文字',
+      args: [],
+    );
+  }
+
+  /// `註冊流程已完成，請聯繫管理員與您核對資訊`
+  String get register_screen_success {
+    return Intl.message(
+      '註冊流程已完成，請聯繫管理員與您核對資訊',
+      name: 'register_screen_success',
+      desc: '註冊成功的提示文字',
+      args: [],
+    );
+  }
+
+  /// `登入`
+  String get register_screen_login {
+    return Intl.message(
+      '登入',
+      name: 'register_screen_login',
+      desc: '登入頁面的連結文字',
       args: [],
     );
   }

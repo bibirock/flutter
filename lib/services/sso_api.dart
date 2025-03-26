@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-26 15:23:16
+ * @LastEditTime: 2025-03-26 15:31:32
  * @Description:  SSO API 服務
  */
 
@@ -10,7 +10,7 @@ import 'settings/api_service_manager.dart';
 
 import '/models/sso_api/core/api_response.dart';
 
-import '/models/sso_api/dto/access_token/response.dart';
+import '/models/sso_api/dto/auth/access_token/response.dart';
 import '/models/sso_api/dto/auth/send_reset_code/response.dart';
 import '/models/sso_api/dto/auth/send_reset_code/request.dart';
 import '/models/sso_api/dto/auth/sign_in_password/response.dart';
@@ -19,8 +19,10 @@ import '/models/sso_api/dto/auth/verify_reset_code/response.dart';
 import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
 import '/models/sso_api/dto/auth/reset_password_by_code/request.dart';
 import '/models/sso_api/dto/auth/reset_password_by_code/response.dart';
-import '../models/sso_api/dto/auth/sign_up/request.dart';
-import '../models/sso_api/dto/auth/sign_up/response.dart';
+import '/models/sso_api/dto/auth/sign_up/request.dart';
+import '/models/sso_api/dto/auth/sign_up/response.dart';
+import '/models/sso_api/dto/auth/verify_register_code/request.dart';
+import '/models/sso_api/dto/auth/verify_register_code/response.dart';
 import 'package:dio/dio.dart';
 
 class SSOApi {
@@ -129,6 +131,17 @@ class SSOApi {
       method: 'POST',
       data: request.toJson(),
       fromJson: SignUpResponse.fromJson,
+    );
+  }
+
+  // 驗證電子郵件註冊碼
+  Future<ApiResponse<VerifyRegisterCodeResponse>> verifyRegisterCode(
+      VerifyRegisterCodeRequest request) async {
+    return _sendRequest<VerifyRegisterCodeResponse>(
+      url: "/verification/register/code",
+      method: 'POST',
+      data: request.toJson(),
+      fromJson: VerifyRegisterCodeResponse.fromJson,
     );
   }
 }

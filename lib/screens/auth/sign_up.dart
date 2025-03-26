@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/widgets/toast.dart';
+import './verify_register_code.dart';
 
 class RegisterAccountScreen extends StatelessWidget {
   const RegisterAccountScreen({super.key});
@@ -86,6 +87,19 @@ class _RegisterAccountFormState extends ConsumerState<RegisterAccountForm> {
       ToastUtil.showError(errorMessage: result.errors!.first.message);
       return;
     }
+
+    // 跳轉到驗證頁面
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VerifyRegisterCodeScreen(
+          name: _name,
+          email: _email,
+          password: _password,
+          accountName: _account,
+        ),
+      ),
+    );
   }
 
   @override
