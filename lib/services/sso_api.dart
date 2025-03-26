@@ -2,7 +2,7 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-26 15:14:19
+ * @LastEditTime: 2025-03-26 15:23:16
  * @Description:  SSO API 服務
  */
 
@@ -19,8 +19,8 @@ import '/models/sso_api/dto/auth/verify_reset_code/response.dart';
 import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
 import '/models/sso_api/dto/auth/reset_password_by_code/request.dart';
 import '/models/sso_api/dto/auth/reset_password_by_code/response.dart';
-import '/models/sso_api/dto/auth/register_account/request.dart';
-import '/models/sso_api/dto/auth/register_account/response.dart';
+import '../models/sso_api/dto/auth/sign_up/request.dart';
+import '../models/sso_api/dto/auth/sign_up/response.dart';
 import 'package:dio/dio.dart';
 
 class SSOApi {
@@ -123,13 +123,12 @@ class SSOApi {
   }
 
   // 註冊帳號
-  Future<ApiResponse<RegisterAccountResponse>> registerAccount(
-      RegisterAccountRequest request) async {
-    return _sendRequest<RegisterAccountResponse>(
+  Future<ApiResponse<SignUpResponse>> signUp(SignUpRequest request) async {
+    return _sendRequest<SignUpResponse>(
       url: "/sso-web/sign-up",
       method: 'POST',
       data: request.toJson(),
-      fromJson: RegisterAccountResponse.fromJson,
+      fromJson: SignUpResponse.fromJson,
     );
   }
 }

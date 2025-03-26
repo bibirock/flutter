@@ -6,15 +6,13 @@ part of 'response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RegisterAccountResponse _$RegisterAccountResponseFromJson(
-        Map<String, dynamic> json) =>
-    RegisterAccountResponse(
+SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
+    SignUpResponse(
       success: json['success'] as bool,
       nextStep: json['nextStep'] as String,
     );
 
-Map<String, dynamic> _$RegisterAccountResponseToJson(
-        RegisterAccountResponse instance) =>
+Map<String, dynamic> _$SignUpResponseToJson(SignUpResponse instance) =>
     <String, dynamic>{
       'success': instance.success,
       'nextStep': instance.nextStep,

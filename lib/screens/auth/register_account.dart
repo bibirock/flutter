@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/sso_api/dto/auth/sign_in_password/request.dart';
+import '/models/sso_api/dto/auth/sign_up/request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
 import '/widgets/toast.dart';
-import 'forget_password.dart';
 
 class RegisterAccountScreen extends StatelessWidget {
   const RegisterAccountScreen({super.key});
@@ -74,10 +73,12 @@ class _RegisterAccountFormState extends ConsumerState<RegisterAccountForm> {
 
     final ssoApi = SSOApi();
 
-    final result = await ssoApi.signInPassword(
-      SignInPasswordRequest(
+    final result = await ssoApi.signUp(
+      SignUpRequest(
         account: _account,
         password: _password,
+        name: _name,
+        email: _email,
       ),
     );
 
@@ -86,12 +87,6 @@ class _RegisterAccountFormState extends ConsumerState<RegisterAccountForm> {
       ToastUtil.showError(errorMessage: result.errors!.first.message);
       return;
     }
-
-    // 使用 AuthNotifier 儲存登入資訊
-    ref.read(authProvider.notifier).signIn(
-          result.data!.accessToken,
-          result.data!.accountId,
-        );
   }
 
   @override
@@ -154,78 +149,88 @@ class _RegisterAccountFormState extends ConsumerState<RegisterAccountForm> {
                     ),
 
                     // 密碼輸入
-                    TextField(
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: l10n.register_screen_password,
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide.none,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: TextField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: l10n.register_screen_password,
+                          border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide.none,
+                          ),
+                          errorText: _passwordHasError
+                              ? l10n.register_screen_password_error
+                              : null,
                         ),
-                        errorText: _passwordHasError
-                            ? l10n.register_screen_password_error
-                            : null,
+                        obscureText: true,
+                        onChanged: (value) {
+                          if (_passwordHasError) {
+                            setState(() {
+                              _passwordHasError = false;
+                            });
+                          }
+                        },
                       ),
-                      obscureText: true,
-                      onChanged: (value) {
-                        if (_passwordHasError) {
-                          setState(() {
-                            _passwordHasError = false;
-                          });
-                        }
-                      },
                     ),
 
                     // 姓名輸入
-                    TextField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: l10n.register_screen_name,
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide.none,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: TextField(
+                        controller: _nameController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: l10n.register_screen_name,
+                          border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide.none,
+                          ),
+                          errorText: _nameHasError
+                              ? l10n.register_screen_name_error
+                              : null,
                         ),
-                        errorText: _nameHasError
-                            ? l10n.register_screen_name_error
-                            : null,
+                        onChanged: (value) {
+                          if (_nameHasError) {
+                            setState(() {
+                              _nameHasError = false;
+                            });
+                          }
+                        },
                       ),
-                      obscureText: true,
-                      onChanged: (value) {
-                        if (_nameHasError) {
-                          setState(() {
-                            _nameHasError = false;
-                          });
-                        }
-                      },
                     ),
 
                     // 電子郵件輸入
-                    TextField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: l10n.register_screen_email,
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide.none,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      child: TextField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: l10n.register_screen_email,
+                          border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0)),
+                            borderSide: BorderSide.none,
+                          ),
+                          errorText: _emailHasError
+                              ? l10n.register_screen_email_error
+                              : null,
                         ),
-                        errorText: _emailHasError
-                            ? l10n.register_screen_email_error
-                            : null,
+                        onChanged: (value) {
+                          if (_emailHasError) {
+                            setState(() {
+                              _emailHasError = false;
+                            });
+                          }
+                        },
                       ),
-                      obscureText: true,
-                      onChanged: (value) {
-                        if (_emailHasError) {
-                          setState(() {
-                            _emailHasError = false;
-                          });
-                        }
-                      },
                     ),
 
                     // 註冊按鈕

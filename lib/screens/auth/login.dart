@@ -6,6 +6,7 @@ import '/services/sso_api.dart';
 import '/providers/auth_provider.dart';
 import '/widgets/toast.dart';
 import 'forget_password.dart';
+import 'register_account.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -218,7 +219,12 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                             ),
                             child: Text(l10n.login_screen_register),
                             onPressed: () {
-                              print('註冊');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterAccountScreen(),
+                                ),
+                              );
                             },
                           )
                         ],
