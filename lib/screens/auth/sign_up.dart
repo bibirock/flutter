@@ -3,7 +3,6 @@ import '/models/sso_api/dto/auth/sign_up/request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '/generated/l10n.dart';
 import '/services/sso_api.dart';
-import '/providers/auth_provider.dart';
 import '/widgets/toast.dart';
 
 class RegisterAccountScreen extends StatelessWidget {
