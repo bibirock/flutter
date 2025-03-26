@@ -235,6 +235,36 @@ class S {
     );
   }
 
+  /// `您可以使用8個字元以上的英文字母、數字、或任意符號`
+  String get update_password_screen_hint {
+    return Intl.message(
+      '您可以使用8個字元以上的英文字母、數字、或任意符號',
+      name: 'update_password_screen_hint',
+      desc: '更新密碼頁面上密碼輸入欄位的提示文字',
+      args: [],
+    );
+  }
+
+  /// `新密碼`
+  String get update_password_screen_new_password {
+    return Intl.message(
+      '新密碼',
+      name: 'update_password_screen_new_password',
+      desc: '更新密碼頁面上新密碼輸入欄位的標籤文字',
+      args: [],
+    );
+  }
+
+  /// `更新密碼`
+  String get update_password_screen_update {
+    return Intl.message(
+      '更新密碼',
+      name: 'update_password_screen_update',
+      desc: '更新密碼按鈕文字',
+      args: [],
+    );
+  }
+
   /// `載入中...`
   String get common_message_loading {
     return Intl.message(

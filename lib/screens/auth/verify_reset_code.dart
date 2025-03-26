@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '/providers/loading_provider.dart';
+import '/widgets/loading.dart';
 import '/generated/l10n.dart';
 import '/widgets/toast.dart';
 import '/services/sso_api.dart';
@@ -31,6 +33,7 @@ class VerifyResetCodeForm extends ConsumerStatefulWidget {
 class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
   final _resetCodeController = TextEditingController();
   bool _accountHasError = false;
+  final _loadingService = LoadingService();
   late S l10n;
   Timer? _timer;
   int _remainingSeconds = 30;
@@ -71,7 +74,6 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
     super.dispose();
   }
 
-  // 修改登入方法，添加驗證邏輯
   Future<void> _verifyResetCode() async {
     // 檢查欄位並設定錯誤狀態
     setState(() {
@@ -83,19 +85,22 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
       return;
     }
 
-    // 呼叫 API
-    final ssoApi = SSOApi();
-    final response = await ssoApi.verifyResetCode(VerifyResetCodeRequest(
-      account: widget.accountName,
-      code: _resetCode,
-    ));
+    // 使用 LoadingService 自動管理 loading 狀態
+    await _loadingService.withLoading(() async {
+      // 呼叫 API
+      final ssoApi = SSOApi();
+      final response = await ssoApi.verifyResetCode(VerifyResetCodeRequest(
+        account: widget.accountName,
+        code: _resetCode,
+      ));
 
-    if (response.hasError) {
-      ToastUtil.showError(errorMessage: response.errors!.first.message);
-      return;
-    }
+      if (response.hasError) {
+        ToastUtil.showError(errorMessage: response.errors!.first.message);
+        return;
+      }
 
-    // 跳轉至設定新密碼頁面
+      // 跳轉至設定新密碼頁面
+    });
   }
 
   @override
@@ -167,21 +172,15 @@ class _VerifyResetCodeFormState extends ConsumerState<VerifyResetCodeForm> {
                     ),
 
                     // 驗證按鈕
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        _verifyResetCode();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 10),
-                        child: Text(l10n.verify_code_screen_button),
-                      ),
-                    ),
+                    LoadingButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                          textStyle: const TextStyle(fontSize: 20),
+                          minimumSize: const Size.fromHeight(48),
+                        ),
+                        onPressed: _verifyResetCode,
+                        child: Text(l10n.forget_password_screen_send_email)),
 
                     // 返回輸入帳號 & 倒數計時
                     Container(

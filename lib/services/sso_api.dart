@@ -2,8 +2,8 @@
  * @Author: Joe.Chen
  * @Date: 2025-03-20 16:30:08
  * @LastEditors: Joe.Chen joechen@tracle-tw.com
- * @LastEditTime: 2025-03-25 17:53:16
- * @Description: 
+ * @LastEditTime: 2025-03-26 14:02:27
+ * @Description:  SSO API 服務
  */
 
 import 'settings/api_service_manager.dart';
@@ -17,12 +17,15 @@ import '/models/sso_api/dto/auth/sign_in_password/response.dart';
 import '/models/sso_api/dto/auth/sign_in_password/request.dart';
 import '/models/sso_api/dto/auth/verify_reset_code/response.dart';
 import '/models/sso_api/dto/auth/verify_reset_code/request.dart';
+import '/models/sso_api/dto/auth/reset_password_by_code/request.dart';
+import '/models/sso_api/dto/auth/reset_password_by_code/response.dart';
 import 'package:dio/dio.dart';
 
 class SSOApi {
   final _api = ApiServiceManager.ssoApi;
   static const application = 'TRACLE-APP';
 
+  // 發送請求統一格式
   Future<ApiResponse<T>> _sendRequest<T>({
     required String url,
     required String method,
@@ -103,6 +106,17 @@ class SSOApi {
       method: 'POST',
       data: request.toJson(),
       fromJson: VerifyResetCodeResponse.fromJson,
+    );
+  }
+
+  // 使用碼驗證碼重設密碼
+  Future<ApiResponse<ResetPasswordByCodeResponse>> resetPasswordByCode(
+      ResetPasswordByCodeRequest request) async {
+    return _sendRequest<ResetPasswordByCodeResponse>(
+      url: "/sso-web/reset-password",
+      method: 'POST',
+      data: request.toJson(),
+      fromJson: ResetPasswordByCodeResponse.fromJson,
     );
   }
 }

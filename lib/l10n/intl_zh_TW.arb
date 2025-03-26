@@ -73,6 +73,18 @@
   "@verify_code_screen_resend": {
     "description": "重新寄送驗證碼的按鈕文字"
   },
+  "update_password_screen_hint": "您可以使用8個字元以上的英文字母、數字、或任意符號",
+  "@update_password_screen_hint": {
+    "description": "更新密碼頁面上密碼輸入欄位的提示文字"
+  },
+  "update_password_screen_new_password": "新密碼",
+  "@update_password_screen_new_password": {
+    "description": "更新密碼頁面上新密碼輸入欄位的標籤文字"
+  },
+  "update_password_screen_update": "更新密碼",
+  "@update_password_screen_update": {
+    "description": "更新密碼按鈕文字"
+  },
   "common_message_loading": "載入中...",
   "@common_message_loading": {
     "description": "通用的載入中提示文字"
