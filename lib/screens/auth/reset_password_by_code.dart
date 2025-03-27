@@ -1,4 +1,6 @@
 import 'dart:async';
+import '/main.dart';
+
 import '/models/sso_api/dto/auth/reset_password_by_code/request.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,6 @@ import '/widgets/loading.dart';
 import '/generated/l10n.dart';
 import '/widgets/toast.dart';
 import '/services/sso_api.dart';
-import './login.dart';
 
 class ResetPasswordByCodeScreen extends StatelessWidget {
   final String accountName;
@@ -92,11 +93,10 @@ class _ResetPasswordByCodeFromState
 
       await Future.delayed(const Duration(seconds: 3));
 
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(
-          builder: (context) => LoginScreen(),
-        ),
+        MaterialPageRoute(builder: (context) => TracleDriverApp()),
+        (Route<dynamic> route) => false,
       );
     });
   }
@@ -145,6 +145,7 @@ class _ResetPasswordByCodeFromState
                               ? l10n.update_password_screen_format_error
                               : null,
                         ),
+                        obscureText: true,
                         onChanged: (value) {
                           if (_passwordHasError) {
                             setState(() {
@@ -165,10 +166,6 @@ class _ResetPasswordByCodeFromState
                         ),
                       ),
                     ),
-
-                    TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text('返回')),
 
                     // 更新密碼按鈕
                     LoadingButton(
